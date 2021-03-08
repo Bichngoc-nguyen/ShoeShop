@@ -1,0 +1,277 @@
+*{margin: 0;padding: 0;}
+/* login */
+.login{
+    background-color: aliceblue;
+}
+
+.content {
+    width: 30%;
+    margin: auto;
+    background: cadetblue;
+}
+
+.content.mt-5.p-3 a {
+    text-decoration: none;
+    color: white;
+}
+
+/* admin */
+.header {
+    background: #1f884e;
+    color: white;
+}
+
+/* btn logout */
+.header a{
+    text-decoration: none;
+    color: white;
+}
+
+.logout{
+    font-size: 35px;
+}
+
+/* main */
+.main {
+    display: flex;
+}
+
+/* sidebar */
+.main-sidebar a {
+    color: #1b1616;
+    font-family: auto;
+    font-size: 22px;
+    text-decoration: none;
+}
+
+.posts-item {
+    opacity: 0;
+    display: none;
+}
+
+.products-item {
+    opacity: 0;
+    display: none;
+}
+
+.sneakers-item {
+    opacity: 0;
+    display: none;
+}
+.sandals-item {
+    opacity: 0;
+    display: none;
+}
+.got-item{
+    opacity: 0;
+    display: none;
+}
+
+.bupbe-item {
+    opacity: 0;
+    display: none;
+}
+
+.users-item {
+    opacity: 0;
+    display: none;
+}
+
+li {
+    background: aliceblue;
+    padding: 10px;
+    list-style: none;
+    border-bottom: 1px solid #b9b9b9;
+}
+
+.main-sidebar {width: 15%;}
+
+li:hover{
+    background: tomato;
+}
+
+.hiden{
+    opacity: 1;
+    display: block;
+}
+
+/* content-main */
+
+.main-createSneakers {
+    width: 40%;
+    margin: auto;
+}
+
+/* list Sneakers */
+.main-listSneakers {
+    width: 70%;
+    margin: auto;
+}
+
+table.list {
+    font-size: 19px;
+}
+
+table.list tr td {padding: 10px;}
+
+table.list img {
+    /* font-size: 30px; */
+    width: 100px;
+}*{margin: 0;padding: 0;}
+/* login */
+.login{
+    background-color: aliceblue;
+}
+
+.content {
+    width: 30%;
+    margin: auto;
+    background: cadetblue;
+}
+
+.content.mt-5.p-3 a {
+    text-decoration: none;
+    color: white;
+}
+
+/* admin */
+.header {
+    background: #1f884e;
+    color: white;
+}
+
+/* btn logout */
+.header a{
+    text-decoration: none;
+    color: white;
+}
+
+.logout{
+    font-size: 35px;
+}
+
+/* main */
+.main {
+    display: flex;
+}
+
+/* sidebar */
+.main-sidebar a {
+    color: #1b1616;
+    font-family: auto;
+    font-size: 22px;
+    text-decoration: none !;
+}
+
+.posts-item {
+    opacity: 0;
+    display: none;
+}
+
+.cate-item {
+    opacity: 0;
+    display: none;
+}
+
+.products-item {
+    opacity: 0;
+    display: none;
+}
+
+.sneakers-item {
+    opacity: 0;
+    display: none;
+}
+.sandals-item {
+    opacity: 0;
+    display: none;
+}
+.got-item{
+    opacity: 0;
+    display: none;
+}
+
+.bupbe-item {
+    opacity: 0;
+    display: none;
+}
+
+.users-item {
+    opacity: 0;
+    display: none;
+}
+
+li {
+    background: gray;
+    padding: 10px;
+    list-style: none;
+}
+
+.main-sidebar {width: 15%;background: gray;}
+
+li:hover{
+    background: tomato;
+}
+
+.hiden{
+    opacity: 1;
+    display: none;
+}
+
+/* content-main */
+
+.main-createSneakers {
+    width: 40%;
+    margin: auto;
+}
+
+/* list Sneakers */
+.main-listSneakers {
+    width: 70%;
+    margin: auto;
+}
+
+table.list {
+    font-size: 19px;
+}
+
+table.list tr td {padding: 10px;}
+
+table.list img {
+    /* font-size: 30px; */
+    width: 100px;
+}
+
+/* search */
+.search {
+    width: 50%;
+    border: 1px solid #91e6ffc9;
+    outline: none;
+    border-radius: 6px;
+}
+
+.search:hover {
+    box-shadow: 2px 2px 9px 0px #91fff0e6;
+    outline: none;
+}
+
+/* pagination */
+p.link_page {
+    width: 25%;
+    border: 1px solid;
+    float: right;
+    text-align: center;
+    display: flex;
+}
+
+.pagination{
+    /* border-bottom-style: double; */
+    padding: 6px;
+    margin: 3px;
+}
+
+.pagination:hover {
+    text-decoration: none;
+    transition: 0.4s;
+    font-size: 20px;
+}

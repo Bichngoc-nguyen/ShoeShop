@@ -9,21 +9,20 @@ class ConfirmController
         $this->request = $request->getInput();
     }
 
-    // // session name
-    // public function postCart($name, $price, $size, $quantity)
-    // {
-    //     if (isset($name) && isset($price) && isset($size)
-    //      && isset($quantity)) {
-    //         echo $_SESSION['nameProduct']=$name;
-    //         echo $_SESSION['price']=$price;
-    //         echo $_SESSION['size']=$size;
-    //         echo $_SESSION['quantity']=$quantity;
-            
-    //         header('location: cart.php');
-    //     }else{
-    //         echo '';
-    //     }
-    // }
+    // update cart
+    public function updateCart()
+    {
+        if (empty($this->request['nameProduct']) && empty($this->request['price']) && empty($this->request['size'])
+         && empty($this->request['quantity'])) {
+            // echo $_SESSION['nameProduct']=$name;
+            // echo $_SESSION['price']=$price;
+            // echo $_SESSION['size']=$size;
+            // echo $_SESSION['quantity']=$quantity;
+            return $this->postCart();
+        }else{
+            echo '';
+        }
+    }
     
     // // confirm get name
     // public function getNameProduct()
@@ -65,24 +64,14 @@ class ConfirmController
     //     }
     // }
 
-    // // confirm get total
-    // public function getTotal()
-    // {
-    //     if (isset($_SESSION['quantity']) && isset($_SESSION['price'])) {
-    //         $quantity = (int)$_SESSION['quantity'];
-    //         $price = (int)$_SESSION['price'];
-    //         $total = $quantity * $price;
-    //         echo $total.'.000đ';
-    //     }else{
-    //         echo '';
-    //     }
-    // }
-
     public function postCart()
     {
         if (isset($_SESSION['cart'])) {
             $session_id = array_column($_SESSION['cart'],"id");
-            if (in_array($this->request['id'], $session_id)===false) {
+            if (in_array($_GET['id'], $session_id)) {
+                echo "<script> alert('Product is already add in cart');</script>";
+                echo "<script> window.location='index.php';</script>";
+            }else{
                 $count = count($_SESSION['cart']);
                 $session_array = array(
                     "id"=>$_GET["id"],
@@ -118,13 +107,29 @@ class ConfirmController
     {
         if ($_GET['action'] == "clean") {
             unset($_SESSION['cart']);
+            echo "<script> window.location='cart.php';</script>";
         }
         if ($_GET['action']=="remove") {
             foreach($_SESSION['cart'] as $key => $value){
                 if ($value['id']==$_GET['id']) {
                     unset($_SESSION['cart'][$key]);
+                    echo "<script> window.location='cart.php';</script>";
                 }
             }
+        }
+    }
+
+    // action total
+    public function getTotal()
+    {   
+        if (isset($_SESSION['cart'])) {
+            $quantity = 0;
+            $total = 0;
+            foreach($_SESSION['cart'] as $value){
+            $quantity += (int)$value['quantity'];
+            $total += ((int)$value['price'] * (int)$value['quantity']);
+            }
+            echo $total.'.000đ';
         }
     }
 }

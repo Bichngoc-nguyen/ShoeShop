@@ -36,7 +36,7 @@
                             <h1><input type="text"class="nameProduct" readonly name="nameProduct" value="<?php echo $value['nameProduct']?>"></h1>
                             <i>Chất liệu cao cấp, bền đẹp theo thời gian. Thiết kế thời trang. Kiểu dáng phong cách. Độ bền cao. Dễ phối đồ.</i>
                             <p class="description-price detail">
-                                Giá: <input type="text" name="price" class="detail_input" readonly value="<?php echo $value['price'].'.000đ'?>">
+                                Giá: <input type="text" name="price" class="detail_input" readonly value="<?php echo $value['price']?>">
                             </p>
                         <div id="size">
                         <b>Size:</b>
@@ -48,7 +48,7 @@
                         </div>
                         <p>
                         <b>Số lượng: </b>
-                            <input type="number" name="quantity" value="1" class="quantity text-center">
+                            <input type="number" name="quantity" min="1" max="10" value="1" class="quantity text-center">
                         </p>
                         <button class="btn-warning buy p-2" name="buy">MUA NGAY</button><br><br>
                         <p>

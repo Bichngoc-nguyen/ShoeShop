@@ -1,12 +1,9 @@
 <?php
     require_once 'header.php';
-    require_once '../../Controllers/Lib/ConfirmController.php';
     require_once '../../Controllers/Pages/PagesController.php';
+    require_once '../../Controllers/Lib/ConfirmController.php';
+  $confirm = new ConfirmController();
     $pages = new PagesController();
-    $confirm = new ConfirmController();
-    if (isset($_POST['payment'])) {
-        // $getPayment = $pages->getPayment();
-    }
 
     if (isset($_POST['updateCart'])) {
         $updateCart = $confirm->postCart();
@@ -15,9 +12,6 @@
         $action = $confirm->postAction();
     }
     
-    // if (isset($_POST['remove'])) {
-    //     $action = $confirm->postRemove();
-    // }
 
 ?>
 <!-- body -->
@@ -37,9 +31,9 @@
             <?php if (isset($_SESSION['cart'])):?>
                 <?php foreach($_SESSION['cart'] as $value){?>
                     <?php
+                    $total = 0;
                     $quantity = (int)$value['quantity'];
                     $price = (int)$value['price'];
-                    $total = 0;
                     ?>
                     
                     <tr>
@@ -47,32 +41,31 @@
                             <input type="text" name="nameProduct" readonly class="detail_input" value="<?php echo $value['name']?>">
                         </td>
                         <td>
-                            <input type="text" name="price" readonly class="detail_input" value="<?php echo $value['price']?>">
+                            <input type="text" name="price" readonly class="detail_input price" value="<?php echo $value['price']?>">
                         </td>
                         <td>
                             <input type="text" name="size" readonly class="detail_input" value="<?php echo $value['size']?>">    
                         </td>
                         <td>
-                            <input type="number" name="quantity" value="<?php echo $value['quantity']?>" class="quantity text-center">
+                            <input type="number" name="quantity" min="1" max="10" value="<?php echo $value['quantity']?>"class="quantity text-center">
                         </td>
                         <td>
-                            <?php echo ($price*$quantity).'.000đ'?>
+                            <input type="text" name="total" class="detail_input" readonly value="<?php echo ($price*$quantity).'.000đ'?>">
                         </td>
                         <td><a href="cart.php?action=remove&id=<?php echo $value['id']?>" name="remove"><i class="fa fa-trash"></i></a></td>
+                        
                     </tr>
                 <?php }?>
                     <tr>
-                        <td colspan="5">Tổng Tiền:
-                            <?php
-                                $total = $total + ($quantity * $price);
-                                echo number_format($total,2);
-                            ?>
-                        </td>
+                        <td colspan="5" class="total">Tổng Tiền: <input class="detail_input" type="text" value="<?php $confirm->getTotal()?>"></td>
                         <td><a href="cart.php?action=clean"  name="action" class="btn btn-warning">Clean All</a></td>
                     </tr>
             <?php endif?>
-            <button class="btn-danger" name="payment">Thanh Toán</button>
-            <button class="btn-danger" name="updateCart">Cập Nhật Giỏ Hàng</button>
+            <div class="mb-3">
+            <a href="index.php" class="btn btn-info mr-2"><i class="fa fa-arrow-left"></i> Tiếp Tục Chọn Sản Phẩm</a>
+            <button class="btn btn-warning mr-2" name="updateCart">Cập Nhật Giỏ Hàng</button>
+            <a href="checkout.php" class="btn btn-danger">Thanh Toán</a>
+            </div>
         </table>
     </form>
 </div>

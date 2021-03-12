@@ -44,130 +44,6 @@
     text-decoration: none;
 }
 
-.posts-item {
-    opacity: 0;
-    display: none;
-}
-
-.products-item {
-    opacity: 0;
-    display: none;
-}
-
-.sneakers-item {
-    opacity: 0;
-    display: none;
-}
-.sandals-item {
-    opacity: 0;
-    display: none;
-}
-.got-item{
-    opacity: 0;
-    display: none;
-}
-
-.bupbe-item {
-    opacity: 0;
-    display: none;
-}
-
-.users-item {
-    opacity: 0;
-    display: none;
-}
-
-li {
-    background: aliceblue;
-    padding: 10px;
-    list-style: none;
-    border-bottom: 1px solid #b9b9b9;
-}
-
-.main-sidebar {width: 15%;}
-
-li:hover{
-    background: tomato;
-}
-
-.hiden{
-    opacity: 1;
-    display: block;
-}
-
-/* content-main */
-
-.main-createSneakers {
-    width: 40%;
-    margin: auto;
-}
-
-/* list Sneakers */
-.main-listSneakers {
-    width: 70%;
-    margin: auto;
-}
-
-table.list {
-    font-size: 19px;
-}
-
-table.list tr td {padding: 10px;}
-
-table.list img {
-    /* font-size: 30px; */
-    width: 100px;
-}*{margin: 0;padding: 0;}
-/* login */
-.login{
-    background-color: aliceblue;
-}
-
-.content {
-    width: 30%;
-    margin: auto;
-    background: cadetblue;
-}
-
-.content.mt-5.p-3 a {
-    text-decoration: none;
-    color: white;
-}
-
-/* admin */
-.header {
-    background: #1f884e;
-    color: white;
-}
-
-/* btn logout */
-.header a{
-    text-decoration: none;
-    color: white;
-}
-
-.logout{
-    font-size: 35px;
-}
-
-/* main */
-.main {
-    display: flex;
-}
-
-/* sidebar */
-.main-sidebar a {
-    color: #1b1616;
-    font-family: auto;
-    font-size: 22px;
-    text-decoration: none !;
-}
-
-.posts-item {
-    opacity: 0;
-    display: none;
-}
-
 .cate-item {
     opacity: 0;
     display: none;
@@ -202,12 +78,14 @@ table.list img {
 }
 
 li {
-    background: gray;
+    background: #A2A2A5;
     padding: 10px;
+    cursor: pointer;
     list-style: none;
+    border-bottom: 1px solid #b9b9b9;
 }
 
-.main-sidebar {width: 15%;background: gray;}
+.main-sidebar {width: 15%;background: #a2a2a2;}
 
 li:hover{
     background: tomato;

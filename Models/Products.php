@@ -29,8 +29,6 @@ class Products extends Database
             $last_id = $this->conn->insert_id;
             $sql ="INSERT INTO categories (nameCategories, product_id ) VALUES ('$cate', '$last_id')";
             $result2 = $this->executeQuery($sql);
-        // var_dump($sql);
-        // die();
         }
         else{
             echo "error";
@@ -112,14 +110,13 @@ class Products extends Database
         $totalPages = ceil($totalRows/$item_per_page);
         return $totalPages;
     }
+    
     // list giày bupbe
     public function getAllListBupbe($item_per_page, $offset)
     {
      $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
      FROM (( product p join productDetail pd ON p.id = pd.product_id) 
      join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Bupbe' limit ".$item_per_page." OFFSET ".$offset;
-    //  var_dump($sql);
-    //  die();
      return $this->executeQuery($sql);
     }
     // end shoe bupbe
@@ -138,6 +135,7 @@ class Products extends Database
         $totalPages = ceil($totalRows/$item_per_page);
         return $totalPages;
     }
+
     // list giày sandals
     public function getAllListSandals($item_per_page, $offset)
     {
@@ -206,6 +204,14 @@ class Products extends Database
         FROM (( product p join productDetail pd ON p.id = pd.product_id) 
         join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Cao gót' AND p.nameProduct LIKE '%".$name."%'";
         return $this->executeQuery($sql);
+    }
+
+    // get getSellingProducts
+    public function getSellingProducts()
+    {
+        $sql = "SELECT nameProduct, quantity FROM orders";
+        $result = $this->executeQuery($sql);
+        return $result;
     }
     
 }

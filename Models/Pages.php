@@ -24,4 +24,43 @@ class Pages extends Database
         WHERE p.id = $id";
         return $this->executeQuery($sql);
     }
+
+    // // payment Cart
+    // public function getPayment($username, $address, $phone, $email, $note, $nameProduct, $quantity, $total,$sum)
+    // {
+    //     $sql = "INSERT INTO customer (username, address, phone, email, note) 
+    //     VALUES ('$username', '$address','$phone','$email', '$note')";
+    //     $result = $this->executeQuery($sql);
+    //     if ($result === true) {
+    //         $last_id = $this->conn->insert_id;
+    //         $sql= "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum) VALUES ('$last_id','$nameProduct','$quantity','$total','$sum')";
+    //         // var_dump($sql);
+    //         // die();
+    //         $result1 = $this->executeQuery($sql);
+    //     }
+    //     return $result1;
+    // }
+
+    // create customer
+    public function postCustomer($username, $address, $phone, $email, $note)
+    {
+        $sql = "INSERT INTO customer (username, address, phone, email, note) 
+               VALUES ('$username', '$address','$phone','$email', '$note')";
+            $result =  $this->executeQuery($sql);
+            return $result;
+    }
+
+    public function postOrders($cart,$total, $sum)
+    {   
+        $sql1 = array();
+        foreach($cart as $value){
+            $name = $value["name"];
+            $quantity = $value["quantity"];
+            $last_id = $this->conn->insert_id;
+            $sql1[] = "('$last_id','$name','$quantity','$total','$sum')";
+        } 
+        $sql = "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum) VALUES ".implode(',',$sql1)."";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
 }

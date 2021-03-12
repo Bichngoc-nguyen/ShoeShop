@@ -28,58 +28,54 @@
         <div class="main-sidebar">
             <div class="content_sidebar">
                 <ul>
-                    <li class="sidebar-posts"><a href="#"><i class="fa fa-tachometer"></i> Post</a></li>
-                    <li class="posts-item p-0">
-                        <ul>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Posts</a></li>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Posts</a></li>
-                        </ul>
-                    </li>
                     <li class="sidebar-cate"><a href="#"><i class="fa fa-tachometer"></i> Category</a></li>
                     <li class="cate-item p-0">
                         <ul>
-                            <li class="pl-4"><a href="createCategory.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Category</a></li>
-                            <li class="pl-4"><a href="listCategories.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Category</a></li>
+                            <li class="pl-4"><a href="createCategory.php"> <i class="fa fa-eercast"></i> Create Category</a></li>
+                            <li class="pl-4"><a href="listCategories.php"> <i class="fa fa-eercast"></i> Lists Category</a></li>
                         </ul>
                     </li>
                     <li class="sidebar-products"><a href="#"><i class="fa fa-file-image-o"></i> Products</a></li>
                     <li class="products-item p-0">
                         <ul>
-                            <li class="pl-4 sneakers"><a href="#"> <i class="fa fa-snowflake-o" aria-hidden="true"></i> Giày Sneakers</a></li>
+                            <li class="pl-4 sneakers"><a href="#"> <i class="fa fa-snowflake-o"></i> Giày Sneakers</a></li>
                             <li class="sneakers-item p-0">
                                 <ul>
-                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast" aria-hidden="true"></i>Create Sneakers</a></li>
-                                    <li class="pl-5"><a href="listSneakers.php"> <i class="fa fa-eercast" aria-hidden="true"></i>Lists Sneakers</a></li>
+                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast"></i>Create Sneakers</a></li>
+                                    <li class="pl-5"><a href="listSneakers.php"> <i class="fa fa-eercast"></i>Lists Sneakers</a></li>
                                 </ul>
                             </li>
-                            <li class="pl-4 sandals"><a href="#"> <i class="fa fa-snowflake-o" aria-hidden="true"></i> Giày Sandals</a></li>
+                            <li class="pl-4 sandals"><a href="#"> <i class="fa fa-snowflake-o"></i> Giày Sandals</a></li>
                             <li class="sandals-item p-0">
                                 <ul>
-                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Sandals</a></li>
-                                    <li class="pl-5"><a href="listSandals.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Sandals</a></li>
+                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast"></i> Create Sandals</a></li>
+                                    <li class="pl-5"><a href="listSandals.php"> <i class="fa fa-eercast"></i> Lists Sandals</a></li>
                                 </ul>
                             </li>
-                            <li class="pl-4 got"><a href="#"> <i class="fa fa-snowflake-o" aria-hidden="true"></i> Giày Cao Gót</a></li>
+                            <li class="pl-4 got"><a href="#"> <i class="fa fa-snowflake-o"></i> Giày Cao Gót</a></li>
                             <li class="got-item p-0">
                                 <ul>
-                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Got</a></li>
-                                    <li class="pl-5"><a href="listGots.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Got</a></li>
+                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast"></i> Create Got</a></li>
+                                    <li class="pl-5"><a href="listGots.php"> <i class="fa fa-eercast"></i> Lists Got</a></li>
                                 </ul>
                             </li>
-                            <li class="pl-4 bupbe"><a href="#"> <i class="fa fa-snowflake-o" aria-hidden="true"></i> Giày Bupbe</a></li>
+                            <li class="pl-4 bupbe"><a href="#"> <i class="fa fa-snowflake-o"></i> Giày Bupbe</a></li>
                             <li class="bupbe-item p-0">
                                 <ul>
-                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Bupbe</a></li>
-                                    <li class="pl-5"><a href="listBupbe.php"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Bupbe</a></li>
+                                    <li class="pl-5"><a href="createProduct.php"> <i class="fa fa-eercast"></i> Create Bupbe</a></li>
+                                    <li class="pl-5"><a href="listBupbe.php"> <i class="fa fa-eercast"></i> Lists Bupbe</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </li>
+                    <li class="sidebar-selling-products"><a href="../admin/sellingProducts.php"><i class="fa fa-line-chart"></i> Selling Products</a></li>
+                    <li class="orders-products"><a href="../admin/orders.php"><i class="fa fa-calculator"></i>  Orders</a></li>
+                    <li class="customers-products"><a href="../admin/customers.php"><i class="fa fa-users"></i> Customers</a></li>
                     <li class="sidebar-users"><a href=""> <i class="fa fa-user-circle-o"></i> Users</a></li>  
                     <li class="users-item p-0">
                         <ul>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast" aria-hidden="true"></i> Create Users</a></li>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast" aria-hidden="true"></i> Lists Users</a></li>
+                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast"></i> Create Users</a></li>
+                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast"></i> Lists Users</a></li>
                         </ul>
                     </li>
                 </ul>

@@ -1,4 +1,7 @@
-<?php session_start();?>
+<?php session_start();
+    require_once '../../Controllers/Lib/ConfirmController.php';
+  $confirm = new ConfirmController();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,25 +35,26 @@
               <input type="submit" class="btn btn-success ml-3" value="Tìm kiếm">
             </form> 
             <div class="menu-list_cart ml-5">
-            <a href="#" class="menu-list_cart-link"><i class="fa fa-shopping-basket"></i></a>
+            <a href="cart.php" class="menu-list_cart-link"><i class="fa fa-shopping-basket"></i>
+            <?php $confirm->getTotal()?></a>
             </div>
           </div>
           <div class="menu-list_item mt-3">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link menu-list_item_link pl-3" href="pages/news.php">NEWS</a>
+                <a class="nav-link menu-list_item_link pl-3" href="../pages/news.php">NEWS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link menu-list_item_link pl-3" href="pages/sandals.php">GIÀY SANDALS</a>
+                <a class="nav-link menu-list_item_link pl-3" href="../pages/sandals.php">GIÀY SANDALS</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link menu-list_item_link pl-3" href="pages/bupbe.php">GIÀY BUP BÊ</a>
+                <a class="nav-link menu-list_item_link pl-3" href="../pages/bupbe.php">GIÀY BUP BÊ</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link menu-list_item_link pl-3" href="pages/got.php">GIÀY CAO GÓT</a>
+                <a class="nav-link menu-list_item_link pl-3" href="../pages/got.php">GIÀY CAO GÓT</a>
               </li>  
               <li class="nav-item">
-                <a class="nav-link menu-list_item_link pl-3" href="pages/sneakers.php">GIÀY SNEAKERS</a>
+                <a class="nav-link menu-list_item_link pl-3" href="../pages/sneakers.php">GIÀY SNEAKERS</a>
               </li>     
             </ul>
           </div>
@@ -59,17 +63,4 @@
       <br>
     </div>
     <!-- end header -->
-    <!-- slide -->
-    <div class="slide detail">
-      <div class="slide-list">
-        <div class="slide-list_item active"><img src="../../public/img/banner.jpg"></div>
-        <div class="slide-list_item "><img src="../../public/img/banner2.jpg"></div>
-        <div class="slide-list_item "><img src="../../public/img/banner3.jpg"></div>
-      </div>
-      <div class="slide-btn-prev" id="btn-prev">
-          <span><i class="fa fa-angle-left"></i></span>
-      </div>
-      <div class="slide-btn-next" id="btn-next">
-          <span><i class="fa fa-angle-right"></i></span>
-      </div>
-    </div>
+    

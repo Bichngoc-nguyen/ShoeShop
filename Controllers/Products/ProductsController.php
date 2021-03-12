@@ -508,4 +508,15 @@ class ProductsController
         return $search;
     }
     
+    // selling products   
+    public function getSellingProducts()
+    {
+        $products = new Products();
+        $sellingProducts = $products->getSellingProducts();
+        $value = [];
+        while ($row = $sellingProducts->fetch_assoc()) {
+            $value[] = $row;
+        }
+    }
 }
+

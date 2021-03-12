@@ -59,158 +59,6 @@ a.nav-link.menu-list_item_link:hover {
     cursor: pointer;
 }
 
-/* slide */
-
-.slide {
-    position: relative;
-    width: 80vw;
-    background: aliceblue;
-    height: 35vw;
-    margin: auto;
-}
-
-.slide-list {
-    position: absolute;
-    width: 80vw;
-    display: flex;
-    height: 35vw;
-}
-
-.slide-list_item.active img {
-    width: 80vw;
-    height: 35vw;
-}
-.slide-list_item {
-    opacity: 0;
-    display: none;
-}
-
-.active {
-    opacity: 1;
-    display: block;
-}
-
-.slide-btn-prev,
-.slide-btn-next {
-    position: absolute;
-    top: 10vw;
-    font-size: 100px;
-}
-
-.slide-btn-next {
-    right: 7vw;
-}
-
-.slide-btn-prev {
-    left: 7vw;
-}
-
-/* .slide-btn_link {
-    color: #d0d0d0;
-}
-
-.slide-btn_link:hover {
-    color: #d0d0d0;
-}
- */
-
- .out-prev{
-    animation: out-prev 1s forwards;
-    transition: 0.4s;
-    -webkit-transition: 0.4s;
-    -moz-transition: 0.4s;
-    -ms-transition: 0.4s;
-    -o-transition: 0.4s;
-}
-@-webkit-keyframes out-prev{
-    from{
-        transform: translateX(0%);
-        -webkit-transform: translateX(0%);
-        -moz-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-        -o-transform: translateX(0%);
-}
-    to{
-        transform: translateX(-80%);
-        -webkit-transform: translateX(-80%);
-        -moz-transform: translateX(-80%);
-        -ms-transform: translateX(-80%);
-        -o-transform: translateX(-80%);
-}
-}
-
-.in-prev{
-    animation: in-prev 1s forwards;
-    -webkit-animation: in-prev 1s forwards;
-}
-@-webkit-keyframes in-prev{
-    from{
-         transform: translateX(80%);
-         transition: 0.4s;
-         -webkit-transform: translateX(80%);
-         -moz-transform: translateX(80%);
-         -ms-transform: translateX(80%);
-         -o-transform: translateX(80%);
-}
-    to{
-        transform: translateX(0%);
-        transition: 0.4s;
-        -webkit-transform: translateX(0%);
-        -moz-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-        -o-transform: translateX(0%);
-}
-}
-
-/* btn next */
-.out-next {
-    animation: out-next 1s forwards;
-    -webkit-animation: out-next 1s forwards;
-}
-
-@-webkit-keyframes out-next {
-    from{
-        transform: translateX(0%);
-        transition: 0.4s;
-        -webkit-transform: translateX(0px);
-        -moz-transform: translateX(0%);
-        -ms-transform: translateX(0%);
-        -o-transform: translateX(0%);
-    }
-    to{
-        transform: translateX(80%);
-        transition: 0.4s;
-        -webkit-transform: translateX(80%);
-        -moz-transform: translateX(80%);
-        -ms-transform: translateX(80%);
-        -o-transform: translateX(80%);
-}
-}
-
-.in-next{
-    animation: in-next 1s forwards;
-    -webkit-animation: in-next 1s forwards;
-}
-
-@-webkit-keyframes in-next {
-    from{
-        transform: translateX(-80%);
-        transition: 0.4s;
-        -webkit-transform: translateX(-80%);
-        -moz-transform: translateX(-80%);
-        -ms-transform: translateX(-80%);
-        -o-transform: translateX(-80%);
-}
-    to{
-        transform: translateX(80%);
-        transition: 0.4s;
-        -webkit-transform: translateX(80%);
-        -moz-transform: translateX(80%);
-        -ms-transform: translateX(80%);
-        -o-transform: translateX(80%);
-}
-}
-
 /* home.php */
 /* content */
 .content{
@@ -304,7 +152,7 @@ input.quantity.text-center {
 }
 
 .detail_input {
-    /* font-size: 41px; */
+    text-align: center;
     color: red;
     width: 80%;
     outline: none;
@@ -318,3 +166,39 @@ button.btn-warning.buy {
     font-family: auto;
 }
 
+tbody th, td {
+    text-align: center;
+    padding: 10px;
+}
+
+td.total {
+    font-size: 25px;
+    font-family: 'FontAwesome';
+    text-align-last: right;
+}
+
+.info_cart {
+    border: 2px solid #151584;
+}
+
+h1 {
+    color: #41cc13;
+    font-family: 'FontAwesome';
+    text-align: center;
+}
+/* shop hoa active */
+.content_active {
+    background-image: url(../../public/img/nen.jpeg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 55%;
+}
+
+.icon_comment img{
+    width: 100%;
+}
+
+.img_feedback img {
+    width: 80%;
+    height: 60%;
+}

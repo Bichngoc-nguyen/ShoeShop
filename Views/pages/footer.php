@@ -1,4 +1,5 @@
-<hr><footer class="footer text-center">
+<hr>
+  <footer class="footer text-center">
   <h3>SHOESHOP.COM - 174 LÂM VĂN BỀN, P.TÂN QUY, Q.7, TP HCM</h3>
   <p>Mã số thuế: 0310955176 do Sở Kế hoạch đầu tư TP HCM cấp ngày 29/06/2011 <br>
   Email: kinhdoanh@gaugaushop.com – Fax: 08.38666237 <br>
@@ -13,6 +14,7 @@
   <script src="../../public/js/zInput.js"></script>
   <script src="../../public/js/jquery.nice-number.js"></script>
   <script type="text/javascript" src="../../public/js/pages.js"></script>
+  <script type="text/javascript" src="../../public/js/detail.js"></script>
   </body>
 </html>
       

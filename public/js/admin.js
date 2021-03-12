@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    // post
-    $('.sidebar-posts').click(function (e) { 
-        e.preventDefault();
-        $('.posts-item').addClass('hiden').slideToggle();
-    });
-    
     // products-cate
     $('.sidebar-cate').click(function (e) { 
         e.preventDefault();
@@ -39,6 +33,18 @@ $(document).ready(function () {
     $('.bupbe').click(function (e) { 
         e.preventDefault();
         $('.bupbe-item').addClass('hiden').slideToggle();
+    });
+    
+    // orders
+    $('.sidebar-orders').click(function (e) { 
+        e.preventDefault();
+        $('.orders-item').addClass('hiden').slideToggle();
+    });
+    
+    // customers
+    $('.sidebar-customers').click(function (e) { 
+        e.preventDefault();
+        $('.customers-item').addClass('hiden').slideToggle();
     });
     
     // users

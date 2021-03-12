@@ -59,4 +59,6 @@ $(document).ready(function () {
     });
     // size
     $("#size").zInput();
+
 });
+        

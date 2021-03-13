@@ -57,9 +57,12 @@ class Pages extends Database
             $name = $value["name"];
             $quantity = $value["quantity"];
             $last_id = $this->conn->insert_id;
-            $sql1[] = "('$last_id','$name','$quantity','$total','$sum')";
+            
+            $sql1[] = "('$last_id','$name','$quantity','$total','$sum', 'Chưa Thanh toán')";
         } 
-        $sql = "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum) VALUES ".implode(',',$sql1)."";
+        $sql = "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum, status) VALUES ".implode(',',$sql1);
+        var_dump($sql);
+        die();
         $result = $this->executeQuery($sql);
         return $result;
     }

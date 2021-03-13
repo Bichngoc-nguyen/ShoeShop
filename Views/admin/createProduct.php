@@ -1,14 +1,14 @@
 <?php
 ob_start();
-    require_once 'header.php';
-    require_once '../../Controllers/Products/ProductsController.php';
-    require_once '../../Controllers/Lib/CategoryController.php';
-    $products = new ProductsController();
-    $cate = new CategoryController();
+require_once 'header.php';
+require_once '../../Controllers/Products/ProductsController.php';
+require_once '../../Controllers/Lib/CategoryController.php';
+$products = new ProductsController();
+$cate = new CategoryController();
 
-    if (isset($_POST['add'])) {
-        $add =  $products->createProducts();
-    }
+if (isset($_POST['add'])) {
+    $add =  $products->createProducts();
+}
 ?>
 
 <div class="main-createSneakers mt-5">

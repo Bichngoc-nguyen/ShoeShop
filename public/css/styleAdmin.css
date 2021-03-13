@@ -97,6 +97,10 @@ li:hover{
 }
 
 /* content-main */
+.main-upadateSneakers.mt-5 {
+    width: 50%;
+    margin: auto;
+}
 
 .main-createSneakers {
     width: 40%;
@@ -110,7 +114,8 @@ li:hover{
 }
 
 table.list {
-    font-size: 19px;
+    font-size: 18px;
+    margin: auto;
 }
 
 table.list tr td {padding: 10px;}
@@ -152,4 +157,26 @@ p.link_page {
     text-decoration: none;
     transition: 0.4s;
     font-size: 20px;
+}
+
+/* orders bill */
+input.bill_input {
+    border: 0px;
+    outline: none;
+}
+
+/* detail bill */
+p.info_shop img {
+    width: 25%;
+}
+
+table.list.text-center td {
+    text-align: center;
+    width: 17%;
+}
+
+.detail_bill {
+    width: 50%;
+    border: 1px solid;
+    /* text-align: center; */
 }

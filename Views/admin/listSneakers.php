@@ -6,7 +6,8 @@
     $numPrev = $products->getBtnPrev();
     $numNext = $products->getBtnNext();
     $numPage = $products->getNumPage();
-
+    $getSelling = $products->getSellingProducts();
+    
 ?>
 
 <div class="main-listSneakers mt-5">
@@ -31,6 +32,25 @@
             </tr>
             <?php if (!empty($search)): ?>
 		<?php $stt = 1; foreach ($search as $value) {?>
+            <?php if (!empty($getSelling)): ?>
+		            <?php foreach ($getSelling as $selling) {?>
+                        <?php 
+                            $quanTotal = $value['quantity'];// tổng số sp 
+                            $nameP = $value['nameProduct'];
+                            $quanSell = $selling['quantity']; // số sp đã bán
+                            $quanKho = 0; // số sp tồn kho
+                            $nameO = $selling['nameProduct'];
+                            if ($nameO == $nameP) {
+                                $quanKho = $quanTotal - $quanSell;
+                                $quanSell = $quanSell;
+                                break;
+                            }else{
+                                $quanSell = 0;
+                                $quanKho = $quanTotal;
+                            }
+                        ?>
+                    <?php }?>
+                <?php endif?>
 			<tr>
 				<td class="color"><?php echo $stt; ?></td>
 					<td><?php echo $value['nameProduct']; ?></td>
@@ -38,8 +58,8 @@
 					<td><img src="<?php echo '../../public/upload/'.$value['image']; ?>" alt=""></td>
 					<td><?php echo $value['price']; ?></td>
 					<td><?php echo $value['quantity']; ?></td>
-					<td>Trống</td>
-					<td>Trống</td>
+					<td><?php echo $quanSell?></td>
+                            <td><?php echo $quanKho ?></td>
 					<td><a href="updateProduct.php?id=<?php echo $value['id'] ?>">Edit</a></td>
 					<td><a href="detailProduct.php?id=<?php echo $value['id'] ?>">Detail</a></td>
 					<td><a href="deleteProduct.php?id=<?php echo $value['id'] ?>">Del</a></td>

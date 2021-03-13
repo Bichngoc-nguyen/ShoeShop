@@ -512,11 +512,138 @@ class ProductsController
     public function getSellingProducts()
     {
         $products = new Products();
-        $sellingProducts = $products->getSellingProducts();
+        $getSelling = $products->getSellingProducts();
         $value = [];
-        while ($row = $sellingProducts->fetch_assoc()) {
+        while ($row = $getSelling->fetch_assoc()) {
             $value[] = $row;
         }
+        return $value;
+    }
+
+    /**
+     * Order Bill
+     */
+    // get order bill with id
+    public function getOrderBillID($id)
+    {
+        $products = new Products();
+        $getBillId = $products->getOrderBillID($id);
+        while ($row = $getBillId->fetch_assoc()) {
+            $value[] = $row;
+        }
+        return $value;
+    }
+
+    // update order bill 
+    public function updateBill()
+    {
+        if ((empty($this->request['name']) && empty($this->request['quantity'])
+         && empty($this->request['total']) && empty($this->request['status'])) === false) {
+           $products = new Products();
+           $update = $products->updateBill($this->request['id'],$this->request['name'],$this->request['quantity'],$this->request['total'], $this->request['status']);
+           if ($update) {
+               header("location: listOrders.php");
+           }
+        }
+    }
+    
+    // get order bill
+    public function getOrderBill()
+    {   
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $offset = ($this->current_page - 1)* $item_per_page;
+        $products = new Products();
+        $getList = $products->getOrderBill($item_per_page,$offset);
+        $value=[];
+        while ($rows = $getList->fetch_assoc()) {
+            $products=1;
+            $value[] = $rows;
+            $products++;
+        }
+        return $value;
+    }
+
+    /**
+     * Phân trang (pagination)
+     * */ 
+    //phân trang btn prev
+    public function getBtnPrevBill()
+    {
+        $pagination = '';
+        $btnPage = 0;
+        if (isset($_GET['page']) && isset($_GET['list'])) {
+            $item_per_page = $_GET['list'];
+            $pageId = $_GET['page'];
+            if ($pageId > 1) {
+                $btnPage = $pageId - 1;
+                $pagination = "<a href=?list=".$item_per_page."&page=".$btnPage." class='pagination'>Prev</a>";
+            }
+        }else{
+            $pagination = '';
+        }
+        return $pagination;
+    }
+
+    //phân trang btn next
+    public function getBtnNextBill()
+    {
+        $pagination = '';
+        $btnPage = 0;
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $offset = ($this->current_page -1) * $item_per_page;
+        $products = new Products();
+        $totalNum = $products->getTotalNumGot($item_per_page, $offset);
+        if (isset($_GET['page']) && isset($_GET['list'])) {
+            $item_per_page = $_GET['list'];
+            $pageId = $_GET['page'];
+            if ($pageId == 1 || $pageId < $totalNum) {
+                $btnPage = $pageId + 1;
+                $pagination = "<a href=?list=".$item_per_page."&page=".$btnPage." class='pagination'>Next</a>";
+            }elseif ($pageId == $totalNum ) {
+				$pagination = "";
+			}
+        }else{
+            $pagination = '<a href=?list='.$item_per_page.'&page=1 class="pagination"">Next</a>';
+        }
+        return $pagination;
+    }
+
+    // list num btn
+    public function getNumPageBill()
+    {
+        $pagination = '';
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $offset = ($this->current_page -1)* $item_per_page;
+        $products = new Products();
+        $totalNum = $products->getTotalNumGot($item_per_page,$offset);
+        $num = 1;
+        for($num = 1; $num <= $totalNum; $num++) {
+            $pagination .= "<a class='pagination' href=?list=".$item_per_page."&page=".$num.">".$num."</a>";
+        }
+        return $pagination;
+    }
+
+    // search bill
+    public function searchBill()
+    {
+        $search='';
+        if (empty($this->request['time'])===false) {
+            $products = new  Products();
+            $search = $products->searchBill($this->request['time']);
+            return $search;
+        }else{
+            return $this->getOrderBill();
+        }
+        return $search;
+    }
+    // get detail order bill    
+    public function getDetailBill($id)
+    {
+        $products = new Products();
+        $getDetailBill = $products->getDetailBill($id);
+        while ($row = $getDetailBill->fetch_assoc()) {
+            $value[] =$row;
+        }
+        return $value;
     }
 }
-

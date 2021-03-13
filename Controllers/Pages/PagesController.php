@@ -76,7 +76,8 @@ class PagesController
             && empty($this->request['quantity']) && empty($this->request['total'])&& empty($this->request['sum']))===false){   
             $cart = !empty($_SESSION['cart'])?$_SESSION['cart']:[];
             $total = $this->request['total'];
-            $sum = $this->request['sum'];
+            var_dump($total);
+            die();
             $pages = new Pages();
             $customer = $pages->postCustomer($this->request['username'],$this->request['address'], $this->request['phone'],
                                              $this->request['email'],$this->request['note']);

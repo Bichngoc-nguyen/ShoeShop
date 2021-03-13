@@ -209,9 +209,53 @@ class Products extends Database
     // get getSellingProducts
     public function getSellingProducts()
     {
-        $sql = "SELECT nameProduct, quantity FROM orders";
+        $sql = "SELECT nameProduct, SUM(quantity) AS quantity
+                 FROM orders 
+                 GROUP BY nameProduct ORDER BY SUM(nameProduct)";
         $result = $this->executeQuery($sql);
         return $result;
     }
-    
+    /**
+     *  ORDERS BILL
+     */
+
+    // get order bill ALL
+    public function getOrderBill($item_per_page, $offset)
+    {
+        $sql = "SELECT id,customer_id, nameProduct, quantity, total, time, status FROM orders limit ".$item_per_page." OFFSET ".$offset;
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+    // get order bill with id
+    public function getOrderBillID($id)
+    {
+        $sql = "SELECT id,customer_id, nameProduct, quantity, total, time, status FROM orders WHERE customer_id = $id";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
+    // update orders bill
+    public function updateBill($id, $name, $quantity, $total, $status)
+    {
+        $sql = "UPDATE orders SET nameProduct = '$name', quantity='$quantity', total='$total', status='$status' WHERE id = $id";
+        $result =  $this->executeQuery($sql);
+        return $result;
+    }
+
+    // search bill
+    public function searchBill($time)
+    {
+        $sql = "SELECT id, customer_id, nameProduct, quantity, total, time, status FROM orders WHERE (time like '%$time%') or (nameProduct like '%$time%')";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
+    // detail bill
+    public function getDetailBill($id)
+    {
+        $sql = "SELECT  c.username, c.address, c.Phone, c.email, c.note, o.id, o.nameProduct, o.quantity, o.total, o.sum
+          FROM orders o join customer c on o.customer_id = c.id WHERE o.customer_id = $id ";
+          $result = $this->executeQuery($sql);
+          return $result;
+    }
 }

@@ -50,7 +50,6 @@
                                 $quantity = (int)$value['quantity'];
                                 $price = (int)$value['price'];
                                 ?>
-                                
                                 <tr>
                                     <td>
                                         <input type="text" name="nameProduct" readonly class="detail_input" value="<?php echo $value['name']?>">
@@ -59,16 +58,16 @@
                                         <input type="text" name="quantity" min="1" max="10" value="<?php echo $value['quantity']?>"class="quantity detail_input text-center">
                                     </td>
                                     <td>
-                                        <input type="text" name="total" class="detail_input" readonly value="<?php echo ($price*$quantity).'.000đ'?>">
+                                        <input type="text" name="total" class="detail_input" readonly value="<?php echo (((int)$value['quantity']) * ((int)$value['price'])).'.000đ'?>">
                                     </td>
                                 </tr>
                             <?php }?>
+                        <?php endif?>
                                 <tr>
                                     <th>Tổng Tiền: </th>
                                     <td></td>
                                     <td><input class="detail_input" type="text" name="sum" readonly value="<?php $confirm->getTotal()?>"></td>
                                 </tr>
-                        <?php endif?>
                 </table>
                         <div class="mb-3">
                             <b>Trả tiền mặt khi nhận hàng</b>

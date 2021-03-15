@@ -1,5 +1,7 @@
 <?php
 require_once '../../Controllers/Lib/RequestController.php';
+require_once '../../Controllers/Pages/PagesController.php';
+
 class ConfirmController 
 {
     public $request;

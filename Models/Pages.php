@@ -33,9 +33,7 @@ class Pages extends Database
     //     $result = $this->executeQuery($sql);
     //     if ($result === true) {
     //         $last_id = $this->conn->insert_id;
-    //         $sql= "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum) VALUES ('$last_id','$nameProduct','$quantity','$total','$sum')";
-    //         // var_dump($sql);
-    //         // die();
+    //         $sql= "INSERT INTO orders (customer_id,nameProduct, quantity, price ,sum) VALUES ('$last_id','$nameProduct','$quantity','$total','$sum')";
     //         $result1 = $this->executeQuery($sql);
     //     }
     //     return $result1;
@@ -50,19 +48,18 @@ class Pages extends Database
             return $result;
     }
 
-    public function postOrders($cart,$total, $sum)
+    public function postOrders($cart, $sum)
     {   
         $sql1 = array();
         foreach($cart as $value){
             $name = $value["name"];
+            $size = $value["size"];
+            $price = $value["price"];
             $quantity = $value["quantity"];
             $last_id = $this->conn->insert_id;
-            
-            $sql1[] = "('$last_id','$name','$quantity','$total','$sum', 'Chưa Thanh toán')";
+            $sql1[] = "('$last_id','$name','$size','$quantity','$price','$sum', 'Chưa Thanh toán')";
         } 
-        $sql = "INSERT INTO orders (customer_id,nameProduct, quantity, total,sum, status) VALUES ".implode(',',$sql1);
-        var_dump($sql);
-        die();
+        $sql = "INSERT INTO orders (customer_id, nameProduct,size, quantity, price ,sum, status) VALUES ".implode(',',$sql1);
         $result = $this->executeQuery($sql);
         return $result;
     }

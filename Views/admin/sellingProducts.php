@@ -22,12 +22,10 @@ $getSelling = $products->getSellingProducts();
                 <td>STT</td>
                 <!-- <td>id</td> -->
                 <td>Tên SP</td>
-                <td>Hình Ảnh</td>
-                <td>Mô Tả</td>
-                <td>Giá</td>
-                <td>Số Lượng</td>
+                <td>Size</td>
                 <td>Số Lượng Đã Bán</td>
                 <td>Số lượng Tồn Kho</td>
+                <td>Giá</td>
                 <td colspan="3">Active</td>
             </tr>
             <?php if (!empty($search)): ?>
@@ -54,13 +52,11 @@ $getSelling = $products->getSellingProducts();
                     <tr>
                         <td class="color"><?php echo $stt; ?></td>
                         <td><?php echo $value['nameProduct']; ?></td>
-                        <td><img src="<?php echo '../../public/upload/'.$value['photo']; ?>" alt=""></td>
-                        <td><img src="<?php echo '../../public/upload/'.$value['image']; ?>" alt=""></td>
-                        <td><?php echo $value['price'].".000đ";?></td>
-                        <td><?php echo $value['quantity'] ?></td>
+                        <td><?php echo $selling['size'];?></td>
                         <!--  -->
                         <td><?php echo $quanSell?></td>
                         <td><?php echo $quanKho ?></td>
+                        <td><?php echo $selling['total'];?></td>
                         <td><a href="updateProduct.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                         <td><a href="detailProduct.php?id=<?php echo $value['id'] ?>">Detail</a></td>
                         <td><a href="deleteProduct.php?id=<?php echo $value['id'] ?>">Del</a></td>

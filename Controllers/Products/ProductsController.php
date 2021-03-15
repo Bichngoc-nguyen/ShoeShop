@@ -534,6 +534,18 @@ class ProductsController
         return $value;
     }
 
+    // get order bill with id to update
+    public function getEditBill($id)
+    {
+        $products = new Products();
+        $getEditBill = $products->getEditBill($id);
+        $value = [];
+        while ($row = $getEditBill->fetch_assoc()) {
+            $value[] = $row;
+        }
+        return $value;
+    }
+    
     // update order bill 
     public function updateBill()
     {
@@ -592,7 +604,7 @@ class ProductsController
         $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
-        $totalNum = $products->getTotalNumGot($item_per_page, $offset);
+        $totalNum = $products->getTotalNumBill($item_per_page, $offset);
         if (isset($_GET['page']) && isset($_GET['list'])) {
             $item_per_page = $_GET['list'];
             $pageId = $_GET['page'];
@@ -615,7 +627,7 @@ class ProductsController
         $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
-        $totalNum = $products->getTotalNumGot($item_per_page,$offset);
+        $totalNum = $products->getTotalNumBill($item_per_page,$offset);
         $num = 1;
         for($num = 1; $num <= $totalNum; $num++) {
             $pagination .= "<a class='pagination' href=?list=".$item_per_page."&page=".$num.">".$num."</a>";
@@ -636,6 +648,7 @@ class ProductsController
         }
         return $search;
     }
+
     // get detail order bill    
     public function getDetailBill($id)
     {
@@ -645,5 +658,18 @@ class ProductsController
             $value[] =$row;
         }
         return $value;
+    }
+
+    // delete order
+    public function deleteCustomer($id)
+    {
+        $customer = new Customers();
+        $del = $customer->deleteCustomer($id);
+        if ($del) {
+            header('location: listOrders.php');
+        }
+        else{
+            echo'ko thanh cong';
+        }
     }
 }

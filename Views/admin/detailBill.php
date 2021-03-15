@@ -68,11 +68,15 @@ if (isset($_GET['id'])) {
                 </tr>
                 <?php if (!empty($getBill)): ?>
                     <?php $stt = 1; foreach ($getBill as $value) {?>
+                        <?php 
+                            $price = (int)$value['price'];
+                            $quantity = (int)$value['quantity'];
+                        ?>
                         <tr>
                             <td class="color"><?php echo $stt; ?></td>
                             <td><?php echo $value['nameProduct']; ?></td>
                             <td><?php echo $value['quantity']; ?></td>
-                            <td><?php echo $value['total']; ?></td>
+                            <td><?php echo $quantity * $price.".000đ"; ?></td>
                         </tr>
                         <?php $stt++; } ?>
                     <?php endif ?>

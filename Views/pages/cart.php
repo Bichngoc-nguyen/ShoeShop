@@ -11,7 +11,6 @@
     if (isset($_GET['action'])) {
         $action = $confirm->postAction();
     }
-    
 
 ?>
 <!-- body -->
@@ -31,33 +30,31 @@
             <?php if (isset($_SESSION['cart'])):?>
                 <?php foreach($_SESSION['cart'] as $value){?>
                     <?php
-                    $total = 0;
-                    $quantity = (int)$value['quantity'];
-                    $price = (int)$value['price'];
+                        $quantity = (int)$value['quantity'];
+                        $price = (int)$value['price'];
                     ?>
-                    
                     <tr>
                         <td>
-                            <input type="text" name="nameProduct" readonly class="detail_input" value="<?php echo $value['name']?>">
+                            <input type="text" name="nameProduct" readonly class="detail_input cart" value="<?php echo $value['name']?>">
                         </td>
                         <td>
-                            <input type="text" name="price" readonly class="detail_input price" value="<?php echo $value['price']?>">
+                            <input type="text" name="price" readonly class="detail_input cart" value="<?php echo $value['price'].'.000đ'?>">
                         </td>
                         <td>
-                            <input type="text" name="size" readonly class="detail_input" value="<?php echo $value['size']?>">    
+                            <input type="text" name="size" readonly class="detail_input cart" value="<?php echo $value['size']?>">    
                         </td>
                         <td>
                             <input type="number" name="quantity" min="1" max="10" value="<?php echo $value['quantity']?>"class="quantity text-center">
                         </td>
                         <td>
-                            <input type="text" name="total" class="detail_input" readonly value="<?php echo ($price*$quantity).'.000đ'?>">
+                            <input type="text" name="total" class="detail_input cart" readonly value="<?php echo $price*$quantity.'.000đ'?>">
                         </td>
                         <td><a href="cart.php?action=remove&id=<?php echo $value['id']?>" name="remove"><i class="fa fa-trash"></i></a></td>
                         
                     </tr>
                 <?php }?>
                     <tr>
-                        <td colspan="5" class="total">Tổng Tiền: <input class="detail_input" type="text" value="<?php $confirm->getTotal()?>"></td>
+                        <td colspan="5" class="total">Tổng Tiền: <input class="detail_input total" type="text" value="<?php $confirm->getTotal()?>"></td>
                         <td><a href="cart.php?action=clean"  name="action" class="btn btn-warning">Clean All</a></td>
                     </tr>
             <?php endif?>

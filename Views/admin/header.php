@@ -70,7 +70,7 @@
                     </li>
                     <li class="sidebar-selling-products"><a href="../admin/sellingProducts.php"><i class="fa fa-line-chart"></i> Selling Products</a></li>
                     <li class="orders-products"><a href="../admin/ListOrders.php"><i class="fa fa-calculator"></i>  Orders</a></li>
-                    <li class="customers-products"><a href="../admin/customers.php"><i class="fa fa-users"></i> Customers</a></li>
+                    <li class="customers-products"><a href="../admin/listCustomers.php"><i class="fa fa-users"></i> Customers</a></li>
                     <li class="sidebar-users"><a href=""> <i class="fa fa-user-circle-o"></i> Users</a></li>  
                     <li class="users-item p-0">
                         <ul>

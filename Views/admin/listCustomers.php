@@ -7,13 +7,13 @@ $search = $customer->searchCus();
 $numPrev = $customer->getBtnPrevCus();
 $numNext = $customer->getBtnNextCus();
 $numPage = $customer->getNumPageCus();
-$getCus = $customer->getCustomers();
+// $getCus = $customer->getCustomers();
 
 ?>
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <input type="search" class="search p-2 mb-2" name="time" placeholder="Search....">
+        Tìm kiếm: <input type="search" class="search p-2 mb-2" name="time" placeholder="Search....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">
@@ -38,9 +38,9 @@ $getCus = $customer->getCustomers();
                     <td><?php echo $value['email']; ?></td>
                     <td><?php echo $value['note']?></td>
                     <td><?php echo $value['status'] ?></td>
-                    <td><a href="updateBill.php?id=<?php echo $value['id'] ?>">Edit</a></td>
+                    <td><a href="updateCus.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                     <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>
-                    <td><a href="deleteCustomer.php?id=<?php echo $value['id'] ?>">Del</a></td>
+                    <td><a href="deleteCus.php?id=<?php echo $value['id'] ?>">Del</a></td>
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>

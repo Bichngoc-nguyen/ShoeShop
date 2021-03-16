@@ -17,7 +17,7 @@
 
 /* admin */
 .header {
-    background: #1f884e;
+    background: #1c4e8c;
     color: white;
 }
 
@@ -38,7 +38,7 @@
 
 /* sidebar */
 .main-sidebar a {
-    color: #1b1616;
+    color: #bdbaba;
     font-family: auto;
     font-size: 22px;
     text-decoration: none;
@@ -78,17 +78,19 @@
 }
 
 li {
-    background: #A2A2A5;
+    background: #252424;
     padding: 10px;
     cursor: pointer;
     list-style: none;
-    border-bottom: 1px solid #b9b9b9;
+    border-bottom: 1px solid #565656;
 }
 
-.main-sidebar {width: 15%;background: #a2a2a2;}
+.main-sidebar {width: 15%;background: #252424;}
 
 li:hover{
-    background: tomato;
+    background: #982410;
+    padding-left: 40px;
+    transition: 0.4s;
 }
 
 .hiden{
@@ -172,7 +174,7 @@ p.info_shop img {
 
 table.list.text-center td {
     text-align: center;
-    width: 14%;
+    width: 12%;
 }
 
 .detail_bill {

@@ -117,7 +117,7 @@ class ProductsController
      public function getAllListSneakers()
      {
          // số dòng hiển thị
-         $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+         $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
          // số page hiện tại và tính số row page tiếp theo
          $offset = ($this->current_page - 1 )* $item_per_page;
          $products = new Products();
@@ -159,7 +159,7 @@ class ProductsController
     {
         $pagination = '';
         $btnPage = 0;
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumSneakers($item_per_page,$offset);
@@ -182,7 +182,7 @@ class ProductsController
     public function getNumPage()
     {
         $pagination = '';
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumSneakers($item_per_page,$offset);
@@ -205,7 +205,7 @@ class ProductsController
     // list giày Bupbe 
     public function getAllListBupbe()
     {
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         // num page current and caculator row page next
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
@@ -247,7 +247,7 @@ class ProductsController
     {
         $pagination = '';
         $btnPage = 0;
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumBupbe($item_per_page,$offset);
@@ -270,7 +270,7 @@ class ProductsController
     public function getNumPageBB()
     {
         $pagination = '';
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumBupbe($item_per_page, $offset);
@@ -290,7 +290,7 @@ class ProductsController
     // list giày Sandals 
     public function getAllListSandals()
     {
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page - 1)* $item_per_page;
         $products = new Products();
         $getList = $products->getAllListSandals($item_per_page,$offset);
@@ -332,7 +332,7 @@ class ProductsController
     {
         $pagination = '';
         $btnPage = 0;
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumSandals($item_per_page,$offset);
@@ -355,7 +355,7 @@ class ProductsController
     public function getNumPageSD()
     {
         $pagination = '';
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumSandals($item_per_page,$offset);
@@ -375,7 +375,7 @@ class ProductsController
     // list giày gots 
     public function getAllListGot()
     {   
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page - 1)* $item_per_page;
         $products = new Products();
         $getList = $products->getAllListGot($item_per_page,$offset);
@@ -414,7 +414,7 @@ class ProductsController
     {
         $pagination = '';
         $btnPage = 0;
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumGot($item_per_page, $offset);
@@ -437,7 +437,7 @@ class ProductsController
     public function getNumPageGot()
     {
         $pagination = '';
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumGot($item_per_page,$offset);
@@ -520,6 +520,35 @@ class ProductsController
         return $value;
     }
 
+    // get order selling
+    public function getOrderSell()
+    {   
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
+        $offset = ($this->current_page - 1)* $item_per_page;
+        $products = new Products();
+        $getList = $products->getOrderSell($item_per_page,$offset);
+        $value=[];
+        while ($rows = $getList->fetch_assoc()) {
+            $products=1;
+            $value[] = $rows;
+            $products++;
+        }
+        return $value;
+    }
+        // search selling
+    public function searchSell()
+    {
+        $search='';
+        if (empty($this->request['time'])===false) {
+            $products = new  Products();
+            $search = $products->searchBill($this->request['time']);
+            return $search;
+        }else{
+            return $this->getOrderSell();
+        }
+        return $search;
+    }
+
     /**
      * Order Bill
      */
@@ -562,7 +591,7 @@ class ProductsController
     // get order bill
     public function getOrderBill()
     {   
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page - 1)* $item_per_page;
         $products = new Products();
         $getList = $products->getOrderBill($item_per_page,$offset);
@@ -601,7 +630,7 @@ class ProductsController
     {
         $pagination = '';
         $btnPage = 0;
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1) * $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumBill($item_per_page, $offset);
@@ -624,7 +653,7 @@ class ProductsController
     public function getNumPageBill()
     {
         $pagination = '';
-        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
         $offset = ($this->current_page -1)* $item_per_page;
         $products = new Products();
         $totalNum = $products->getTotalNumBill($item_per_page,$offset);
@@ -659,17 +688,5 @@ class ProductsController
         }
         return $value;
     }
-
-    // delete order
-    public function deleteCustomer($id)
-    {
-        $customer = new Customers();
-        $del = $customer->deleteCustomer($id);
-        if ($del) {
-            header('location: listOrders.php');
-        }
-        else{
-            echo'ko thanh cong';
-        }
-    }
+    
 }

@@ -12,67 +12,37 @@ class ConfirmController
     }
 
     // update cart
-    public function updateCart()
-    {
-        if (empty($this->request['nameProduct']) && empty($this->request['price']) && empty($this->request['size'])
-         && empty($this->request['quantity'])) {
-            // echo $_SESSION['nameProduct']=$name;
-            // echo $_SESSION['price']=$price;
-            // echo $_SESSION['size']=$size;
-            // echo $_SESSION['quantity']=$quantity;
-            return $this->postCart();
-        }else{
-            echo '';
-        }
-    }
-    
-    // // confirm get name
-    // public function getNameProduct()
+    // public function updateCart()
     // {
-    //     if (isset($_SESSION['nameProduct'])) {
-    //         echo $_SESSION['nameProduct'];
-    //     }else{
-    //         echo '';
+    //     if (isset($_SESSION['cart'])) {
+    //             $session_array = array(
+    //                 "id"=>$_GET["id"],
+    //                 "name"=>$this->request['nameProduct'],
+    //                 "price"=>$this->request['price']+$this->request['price'],
+    //                 "size"=>$this->request['size'],
+    //                 "quantity"=>$this->request['quantity']+1
+    //             );
+    //         $_SESSION['cart'] = $session_array;
+    //         var_dump(array_unique($_SESSION['cart']));
+    //         // die();
+    //         header('location: cart.php');
     //     }
     // }
-
-    // // confirm get size
-    // public function getSize()
-    // {
-    //     if (isset($_SESSION['size'])) {
-    //         echo $_SESSION['size'];
-    //     }else{
-    //         echo '';
-    //     }
-    // }
-
-    // // confirm get price
-    // public function getPrice()
-    // {
-    //     if (isset($_SESSION['price'])) {
-    //         echo $_SESSION['price'];
-    //     }else{
-    //         echo '';
-    //     }
-    // }
-
-    // // confirm get quantity
-    // public function getQuantity()
-    // {
-    //     if (isset($_SESSION['quantity'])) {
-    //         echo $_SESSION['quantity'];
-    //     }else{
-    //         echo '';
-    //     }
-    // }
-
     public function postCart()
     {
         if (isset($_SESSION['cart'])) {
             $session_id = array_column($_SESSION['cart'],"id");
             if (in_array($_GET['id'], $session_id)) {
-                echo "<script> alert('Product is already add in cart');</script>";
-                echo "<script> window.location='index.php';</script>";
+                $count = count($_SESSION['cart']);
+                $session_array = array(
+                    $_GET["id"]=>"id",
+                    $this->request['nameProduct']=>"name",
+                    $this->request['price']=>"price",
+                    $this->request['size']=>"size",
+                  $this->request['quantity']+1 =>"quantity"
+                );
+            $_SESSION['cart'][$count] = $session_array;
+            header('location: cart.php');
             }else{
                 $count = count($_SESSION['cart']);
                 $session_array = array(
@@ -86,6 +56,7 @@ class ConfirmController
             header('location: cart.php');
             }
         }else{
+            unset($_SESSION['cart']['id']);
             $session_array = array(
                 "id"=>$this->request["id"],
                 "name"=>$this->request['nameProduct'],

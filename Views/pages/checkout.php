@@ -19,7 +19,7 @@
     <form action="" method="POST">
         <div class="row">
             <!-- info customer -->
-            <div class="col-xs-12 col-sm-12 col-lg-6 mt-5">
+            <div class="col-xs-12 col-sm-12 col-lg-4 ml-5 mt-5">
                 <h3>THÔNG TIN KHÁCH HÀNG</h3>
                 <label>Họ tên *</label>
                 <input type="text" name="username" class="form-control" required>
@@ -33,11 +33,12 @@
                 <textarea name="note" cols="30" class="form-control" rows="10"></textarea>
             </div>
             <!-- col products -->
-            <div class="col-xs-12 col-sm-12 col-lg-5 p-4 m-3 info_cart">
+            <div class="col-xs-12 col-sm-12 col-lg-7 p-4 m-3 info_cart">
                 <h3>ĐƠN HÀNG CỦA BẠN</h3>
                 <table class="table">
                         <tr>
                             <th>Sản Phẩm</th>
+                            <th>Size</th>
                             <th>Số Lượng</th>
                             <th>Tạm Tính</th>
                         </tr>
@@ -54,11 +55,11 @@
                                     <td>
                                         <input type="text" name="size" readonly class="detail_input cart" value="<?php echo $value['size']?>">
                                     </td>
-                                    <td class="detail_total ">
+                                    <td class="detail_total">
                                         <input type="text" name="price" readonly class="detail_input cart" value="<?php echo $value['price']?>">
                                     </td>
-                                    <td class="detail_total ">
-                                        <input type="text" name="quantity" min="1" max="10" value="<?php echo $value['quantity']?>"class="quantity detail_input cart text-center">
+                                    <td>
+                                        <input type="text" name="quantity" min="1" max="10" onchange="updateQ(<?php echo $value['quantity']?>)" value="<?php echo $value['quantity']?>"class="quantity detail_input cart text-center">
                                     </td>
                                     <td>
                                         <input type="text" name="total" class="detail_input cart" readonly value="<?php echo (int)$value['quantity'] * (int)$value['price'].'.000đ'?>">
@@ -67,8 +68,7 @@
                             <?php }?>
                         <?php endif?>
                                 <tr>
-                                    <th>Tổng Tiền: </th>
-                                    <td></td>
+                                    <th colspan="3">Tổng Tiền: </th>
                                     <td><input class="detail_input cart" type="text" name="sum" readonly value="<?php $confirm->getTotal()?>"></td>
                                 </tr>
                 </table>

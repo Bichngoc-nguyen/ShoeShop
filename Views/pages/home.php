@@ -1,8 +1,17 @@
 <?php
     require_once 'header.php';
     require_once '../../Controllers/Pages/PagesController.php';  
+    require_once '../../Controllers/Products/ProductsController.php';  
     $pages = new PagesController();
+    $products = new ProductsController();
     $getNProducts=$pages->getNewProducts();
+    $sneakers = $products->searchSneakers();
+    $sandals = $products->searchSandals();
+    $BupBe = $products->searchBupbe();
+    $got = $products->searchGots();
+    $numPrev = $products->getBtnPrev();
+    $numNext = $products->getBtnNext();
+    $numPage = $products->getNumPage();
 ?>
 <!-- body -->
 <div class="content m-auto">
@@ -109,13 +118,99 @@
         </div>
     </div>
 
-    <!-- Hoa được iu thích nhiều nhất -->
-    <div class="content_favorite">
-            <h1>HOA ĐƯỢC YÊU THÍCH NHẤT</h1><hr class="mt-0 mb-5">
-            <!-- <form action="" method="GET">
-                <div class="row ml-0 mr-0">
-                   
-                </div>
-            </form> -->
+    <!-- giày sneakers -->
+    <div class="content_productsNew">
+        <h1>Giày Sneakers</h1><hr class="mt-0">
+        <form action="" method="GET">
+                <div class="content-products row ml-0 mr-0">
+                    <?php if (!empty($sneakers)): ?>
+                        <?php foreach($sneakers as $value){?>
+                            <div class="col-xs-12 col-sm-6 col-lg-3 content-products_item mb-4">
+                                <div class="products-item_image">
+                                    <a href="detailProduct.php?id=<?php echo $value['id'];?>"><img src="<?php echo '../../public/upload/'.$value['photo'];?>" alt=""></a>
+                                </div>
+                                <div class="products-item_description mt-1">
+                                    <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                                    <p class="description-price"><?php echo $value['price'].",000đ"?></p>
+                                    <p><?php echo $value['nameProduct']?></p>
+                            </div>
+                        </div>
+                     <?php }?>
+                <?php endif?>
+            </div>
+         </form>
+         <a href="sneakers.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
+    </div>
+
+    <!-- giày sandals -->
+    <div class="content_productsNew">
+        <h1>Giày Sandals</h1><hr class="mt-0">
+        <form action="" method="GET">
+                <div class="content-products row ml-0 mr-0">
+                    <?php if (!empty($sandals)): ?>
+                        <?php foreach($sandals as $value){?>
+                            <div class="col-xs-12 col-sm-6 col-lg-3 content-products_item mb-4">
+                                <div class="products-item_image">
+                                    <a href="detailProduct.php?id=<?php echo $value['id'];?>"><img src="<?php echo '../../public/upload/'.$value['photo'];?>" alt=""></a>
+                                </div>
+                                <div class="products-item_description mt-1">
+                                    <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                                    <p class="description-price"><?php echo $value['price'].",000đ"?></p>
+                                    <p><?php echo $value['nameProduct']?></p>
+                            </div>
+                        </div>
+                     <?php }?>
+                <?php endif?>
+            </div>
+         </form>
+         <a href="sandals.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
+    </div>
+
+    <!-- giày BupBe -->
+    <div class="content_productsNew">
+        <h1>Giày BupBe</h1><hr class="mt-0">
+        <form action="" method="GET">
+                <div class="content-products row ml-0 mr-0">
+                    <?php if (!empty($BupBe)): ?>
+                        <?php foreach($BupBe as $value){?>
+                            <div class="col-xs-12 col-sm-6 col-lg-3 content-products_item mb-4">
+                                <div class="products-item_image">
+                                    <a href="detailProduct.php?id=<?php echo $value['id'];?>"><img src="<?php echo '../../public/upload/'.$value['photo'];?>" alt=""></a>
+                                </div>
+                                <div class="products-item_description mt-1">
+                                    <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                                    <p class="description-price"><?php echo $value['price'].",000đ"?></p>
+                                    <p><?php echo $value['nameProduct']?></p>
+                            </div>
+                        </div>
+                     <?php }?>
+                <?php endif?>
+            </div>
+         </form>
+         <a href="bupbe.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
+    </div>
+    
+    <!-- giày got -->
+    <div class="content_productsNew">
+        <h1>Giày Cao Gót</h1><hr class="mt-0">
+        <form action="" method="GET">
+                <div class="content-products row ml-0 mr-0">
+                    <?php if (!empty($got)): ?>
+                        <?php foreach($got as $value){?>
+                            <div class="col-xs-12 col-sm-6 col-lg-3 content-products_item mb-4">
+                                <div class="products-item_image">
+                                    <a href="detailProduct.php?id=<?php echo $value['id'];?>"><img src="<?php echo '../../public/upload/'.$value['photo'];?>" alt=""></a>
+                                </div>
+                                <div class="products-item_description mt-1">
+                                    <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                                    <p class="description-price"><?php echo $value['price'].",000đ"?></p>
+                                    <p><?php echo $value['nameProduct']?></p>
+                            </div>
+                        </div>
+                     <?php }?>
+                <?php endif?>
+            </div>
+         </form>
+         <a href="got.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
     </div>
 </div>

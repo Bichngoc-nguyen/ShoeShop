@@ -12,23 +12,23 @@
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <input type="search" class="search p-2 mb-2" name="name" placeholder="Search....">
+        Tìm Kiếm: <input type="search" class="search p-2 mb-2" name="name" placeholder="Nhập tên sản phẩm....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
         <a href="createProduct.php" class="btn btn-warning">Add</a>
     </form>
     <form action="" method="POST">
         <table class="list text-center" border="1">
             <tr>
-                <td>STT</td>
+                <th>STT</th>
                 <!-- <td>id</td> -->
-                <td>Tên SP</td>
-                <td>Hình Ảnh</td>
-                <td>Mô Tả</td>
-                <td>Giá</td>
-                <td>Số Lượng</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Số lượng Tồn Kho</td>
-                <td colspan="3">Active</td>
+                <th>Tên SP</th>
+                <th>Hình Ảnh</th>
+                <th>Mô Tả</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Số lượng Tồn Kho</th>
+                <th colspan="3">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
 		<?php $stt = 1; foreach ($search as $value) {?>

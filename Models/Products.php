@@ -215,6 +215,18 @@ class Products extends Database
         $result = $this->executeQuery($sql);
         return $result;
     }
+
+     // get order selling ALL
+     public function getOrderSell($item_per_page, $offset)
+     {
+        
+         $sql = "SELECT c.username, o.id, o.customer_id, o.nameProduct, SUM(o.quantity) AS quantity, o.price, o.sum,o.time, o.status 
+         FROM (orders o join customer c ON o.customer_id = c.id) 
+         WHERE o.quantity > 5 GROUP BY nameProduct ORDER BY quantity limit ".$item_per_page." OFFSET ".$offset ;
+         $result = $this->executeQuery($sql);
+         return $result;
+     }
+    
     /**
      *  ORDERS BILL
      */
@@ -237,6 +249,7 @@ class Products extends Database
         $result = $this->executeQuery($sql);
         return $result;
     }
+    
     // get order bill with id
     public function getOrderBillID($id)
     {

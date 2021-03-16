@@ -25,7 +25,7 @@
                 <th>SIZE</th>
                 <th>SỐ LƯỢNG</th>
                 <th>TỔNG</th>
-                <th></th>
+                <th>Active</th>
             </tr>
             <?php if (isset($_SESSION['cart'])):?>
                 <?php foreach($_SESSION['cart'] as $value){?>

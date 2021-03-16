@@ -17,7 +17,7 @@
         <!-- header -->
         <div class="header row ml-0 mr-0 p-1">
             <div class="col-6">
-                <h3>ADMIN</h3>
+                <h3><a href="../pages/index.php">Shoe Shop</a></h3>
             </div>
             <div class="col-6 text-right">
                 <a href="logout.php"><i class="fa fa-user logout"></i></a>
@@ -28,6 +28,7 @@
            <div class="main-sidebar">
             <div class="content_sidebar">
                 <ul>
+                    <li class="sidebar-cate"><a href="index.php"><i class="fa fa-home"></i> DashBoarch</a></li>
                     <li class="sidebar-cate"><a href="#"><i class="fa fa-tachometer"></i> Category</a></li>
                     <li class="cate-item p-0">
                         <ul>

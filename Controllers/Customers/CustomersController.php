@@ -106,4 +106,45 @@ class CustomersController
         }
         return $pagination;
     }
+
+     // get order Customer with id to update
+     public function getEditCus($id)
+     {
+         $customer = new Customers();
+         $getEditCus = $customer->getEditCus($id);
+         $value = [];
+         while ($row = $getEditCus->fetch_assoc()) {
+             $value[] = $row;
+         }
+         return $value;
+     }
+     
+     // update order Cus 
+     public function updateCus()
+     {
+         if ((empty($this->request['name']) && empty($this->request['address']) && empty($this->request['phone'])
+         && empty($this->request['email']) && empty($this->request['note']) && empty($this->request['status'])) === false) {
+            $customer = new Customers();
+            $update = $customer->updateCus($this->request['id'],$this->request['name'],$this->request['address'],$this->request['phone'],
+            $this->request['email'],$this->request['note'], $this->request['status']);
+            if ($update) {
+                header("location: listCustomers.php");
+            }
+         }
+     }
+
+     
+    // delete order
+    public function deleteCus($id)
+    {
+        $customer = new Customers();
+        $del = $customer->deleteCus($id);
+        if ($del) {
+            header('location: listCustomers.php');
+        }
+        else{
+            echo'ko thanh cong';
+        }
+    }
+
 }

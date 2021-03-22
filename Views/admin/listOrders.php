@@ -12,7 +12,7 @@ $getBill = $products->getOrderBill();
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <input type="search" class="search p-2 mb-2" name="time" placeholder="Nhập tên SP, tên KH hoặc thời gian....">
+        <input type="search" class="search p-2 mb-2" name="time" placeholder="Nhập tên SP, tên KH, trạng thái hoặc thời gian....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">

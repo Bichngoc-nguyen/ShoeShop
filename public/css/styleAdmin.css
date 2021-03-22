@@ -40,7 +40,7 @@
 .main-sidebar a {
     color: #bdbaba;
     font-family: auto;
-    font-size: 22px;
+    font-size: 21px;
     text-decoration: none;
 }
 
@@ -181,4 +181,14 @@ table.list.text-center td {
     width: 50%;
     border: 1px solid;
     /* text-align: center; */
+}
+
+/* users */
+table.table img {
+    width: 15%;
+}
+
+.content_user {
+    width: 50%;
+    margin: auto;
 }

@@ -23,13 +23,24 @@
         <form action="" method="POST" enctype="multipart/form-data">
             <h3>REGISTER</h3>
             <label>Username :</label>
-            <input type="text"class="form-control" placeholder="Nhap name" name="username"> <br>
+            <input type="text"class="form-control" placeholder="Nhap name" name="username" require> <br>
+            <label>Address :</label>
+            <input type="text"class="form-control" placeholder="Nhap address" name="address" require> <br>
+            <label>Birthday :</label>
+            <input type="date"class="form-control" placeholder="Nhap birthday" name="birthday" require> <br>
+            <label>Telephone :</label>
+            <input type="text"class="form-control" placeholder="Nhap telephone" name="telephone" require> <br>
             <label>Email :</label>
-            <input type="email"class="form-control" placeholder="Nhap email" name="email"> <br>
+            <input type="email"class="form-control" placeholder="Nhap email" name="email" require> <br>
             <label>Password :</label>
-            <input type="password" class="form-control" placeholder="Nhap password" name="password"><br>
+            <input type="password" class="form-control" placeholder="Nhap password" name="password" require><br>
+            <label>Position :</label>
+            <select name="position" class="form-control" require>
+              <option value="Quản trị viên">Quản trị viên</option>
+              <option value="Nhân viên">Nhân viên</option>
+            </select>
             <label>Avatar :</label>
-            <input type="file" name="avatar"><br>
+            <input type="file" name="avatar" require><br>
             <input type="submit" class="btn btn-success" value="Register" name="register">
             <button class="btn btn-warning"><a href="login.php">Login</a></button>
         </form>    

@@ -27,7 +27,7 @@ if (isset($_POST['add'])) {
         <label>Category :</label>
         <?php $cate->getCategory()?>
         <input type="submit" class="btn btn-success"  value="Thêm" name="add">
-        <input type="button" value="Hủy">
+        <a class="btn btn-danger"href="index.php">Hủy</a>
     </form>
 </div>
 </div>

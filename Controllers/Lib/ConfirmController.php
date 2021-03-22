@@ -102,7 +102,10 @@ class ConfirmController
             $quantity += (int)$value['quantity'];
             $total += ((int)$value['price'] * (int)$value['quantity']);
             }
-            echo $total.'.000đ';
+            echo '('.$total.'.000đ)';
+        }
+        else{
+            echo '(0đ)';
         }
     }
 }

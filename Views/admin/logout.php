@@ -20,7 +20,7 @@
             <label>Password :</label>
             <input type="password" class="form-control"  placeholder="Nhap password"><br>
             <input type="submit" class="btn btn-success" value="Login">
-            <button class="btn btn-warning"><a href="logout.php">Register</a></button>
+            <button class="btn btn-warning"><a href="register.php">Register</a></button>
         </form>    
         </div>
     </div>

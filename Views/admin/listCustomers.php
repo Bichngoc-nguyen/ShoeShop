@@ -13,7 +13,7 @@ $numPage = $customer->getNumPageCus();
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        Tìm kiếm: <input type="search" class="search p-2 mb-2" name="time" placeholder="Search....">
+        Tìm kiếm: <input type="search" class="search p-2 mb-2" name="name" placeholder="Search....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">

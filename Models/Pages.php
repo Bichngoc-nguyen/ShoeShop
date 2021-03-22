@@ -25,20 +25,6 @@ class Pages extends Database
         return $this->executeQuery($sql);
     }
 
-    // // payment Cart
-    // public function getPayment($username, $address, $phone, $email, $note, $nameProduct, $quantity, $total,$sum)
-    // {
-    //     $sql = "INSERT INTO customer (username, address, phone, email, note) 
-    //     VALUES ('$username', '$address','$phone','$email', '$note')";
-    //     $result = $this->executeQuery($sql);
-    //     if ($result === true) {
-    //         $last_id = $this->conn->insert_id;
-    //         $sql= "INSERT INTO orders (customer_id,nameProduct, quantity, price ,sum) VALUES ('$last_id','$nameProduct','$quantity','$total','$sum')";
-    //         $result1 = $this->executeQuery($sql);
-    //     }
-    //     return $result1;
-    // }
-
     // create customer
     public function postCustomer($username, $address, $phone, $email, $note)
     {
@@ -164,4 +150,6 @@ class Pages extends Database
         $sql = "INSERT INTO contact (username,email, phone, note) VALUES ('$name', '$email', '$phone','$note')";
         return $this->executeQuery($sql);
     }
+
+
 }

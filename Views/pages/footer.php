@@ -17,4 +17,4 @@
   <script type="text/javascript" src="../../public/js/detail.js"></script>
   </body>
 </html>
-      
+    

@@ -1,6 +1,11 @@
 <?php session_start();
     require_once '../../Controllers/Lib/ConfirmController.php';
+    require_once '../../Controllers/Pages/PagesController.php';
   $confirm = new ConfirmController();
+  $pages = new PagesController();
+  if (empty($_POST['name'])) {
+    $search = $pages->searchProducts();
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,12 +38,13 @@
         </div>
         <div class="menu-list_search">
             <form action="">
-              <input type="text" class="form-control" placeholder="search..."> 
-              <input type="submit" class="btn btn-success ml-3 search" value="Search">
+              <input type="text" class="form-control" name="name" placeholder="search..."> 
+              <p type="submit" class="ml-3 mb-0 search"><i class="fa fa-search"></i></p>
+              <!-- <input type="submit"  value="Search"> -->
             </form> 
-            <div class="menu-list_cart ml-3">
+            <div class="menu-list_cart ml-3 mt-5">
             <a href="cart.php" class="menu-list_cart-link"><i class="fa fa-shopping-basket"></i>
-            <?php echo ('</br><i>'.$confirm->getTotal().'sản phẩm </i>');?></a>
+            <?php echo ('</br><i>'.$confirm->getTotal().'</i>');?></a>
             </div>
           </div>
       </div>
@@ -73,5 +79,6 @@
       <br>
       </div>
     </div>
+  </div>
     <!-- end header -->
     

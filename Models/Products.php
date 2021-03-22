@@ -262,7 +262,8 @@ class Products extends Database
     public function searchBill($time)
     {
         $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum, o.time, o.status
-        FROM (orders o join customer c ON o.customer_id = c.id) WHERE (time like '%$time%') or (nameProduct like '%$time%') or (username like '%$time%')";
+        FROM (orders o join customer c ON o.customer_id = c.id) WHERE (time like '%$time%') 
+        or (nameProduct like '%$time%') or (username like '%$time%') or (status like '%$time%')";
         $result = $this->executeQuery($sql);
         return $result;
     }
@@ -292,4 +293,31 @@ class Products extends Database
           return $result;
     }
 
+    /**
+     * customer contact
+     * */ 
+    
+    // list contact
+    public function getAllContacts($item_per_page,$offset)
+    {
+       $sql = "SELECT * FROM contact limit ".$item_per_page." OFFSET ".$offset;
+       return $this->executeQuery($sql);
+    }
+
+    // get total num pages contact
+    public function getTotalNumContact($item_per_page)
+    {
+       $sql = "SELECT * FROM contact limit ".$item_per_page;
+       $result = $this->executeQuery($sql);
+       $totalRows = $result->num_rows;
+       $totalPages = ceil($totalRows/$item_per_page);
+       return $totalPages;
+    }
+
+    // delete contact
+    public function delContact($id)
+    {
+        $sql = "DELETE FROM contact WHERE id = $id";
+        return $this->executeQuery($sql);
+    }
 }

@@ -58,7 +58,7 @@ class ProductsController
              $create = $products->createProducts($this->request['name'], $file, 
                  $this->request['price'], $this->request['quantity'],$files,$this->request['cate']);
              if ($create) {
-                 header('location: listSandals.php');
+                 header('location: index.php');
              }
          }
      }
@@ -689,4 +689,88 @@ class ProductsController
         return $value;
     }
     
+    /*
+    * Customer Contact 
+    */
+    public function getAllContacts()
+    {
+        // số dòng hiển thị
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        // số page hiện tại và tính số row kế tiếp
+        $offset = ($this->current_page-1) * $item_per_page;
+        $products = new Products();
+        $contact = $products->getAllContacts($item_per_page,$offset);
+        while ($rows = $contact->fetch_assoc()) {
+            $value[]=$rows;
+        }if (empty($value)) {
+            $value=[];
+        }
+        return $value;
+    }
+
+    // get total number pages 
+    public function getNumPageContact()
+    {
+        $pagination ='';
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+        $offset = ($this->current_page -1 )* $item_per_page;
+        $products = new Products();
+        $totalNum = $products->getTotalNumContact($item_per_page);
+        for ($i= 1; $i <= $totalNum ; $i++) { 
+            $pagination ="<a class='pagination' href=?list=".$item_per_page."&page=".$i.">".$i."</a>";
+        }
+        return $pagination;
+    }
+
+    // phân trang prev
+    public function getBtnPrevContact()
+    {
+        $pagination = '';
+        $btnPage = 0;
+        if (isset($_GET['page'])&& isset($_GET['list'])) {
+            $item_per_page = $_GET['list'];
+            $pageId = $_GET['page'];
+            if ($pageId > 1) {
+                $btnPage = $pageId - 1;
+                $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Prev</a>";
+            }
+        }else{
+            $pagination = '';
+        }
+        return $pagination;
+    }
+
+    // phân trang next
+    public function getBtnNextContact()
+    {
+       $pagination = '';
+       $pageId = 0;
+       $item_per_page = (empty($_GET['list'])===false?$_GET['list']:5);
+       $offset = ($this->current_page -1 )* $item_per_page;
+       $products = new Products();
+       $totalNum = $products->getTotalNumContact($item_per_page);
+       if (isset($_GET['list'])&& isset($_GET['page'])) {
+           $item_per_page = $_GET['list'];
+           $pageId = $_GET['page'];
+           if ($pageId < 1|| $pageId < $totalNum) {
+               $btnPage = $pageId + 1;
+               $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Next</a>";
+           }elseif ($pageId == $totalNum) {
+               $pagination="";
+           }
+       }else{
+            $pagination = '<a href=?list='.$item_per_page.'&page=1 class="pagination"">Next</a>';
+       }
+        return $pagination;
+    }
+
+    // delete contact
+    public function delContact($id)
+    {
+        $products = new Products();
+        $delContact = $products->delContact($id);
+        if ($delContact) {
+            header("location: listContact.php");
+        }
+    }
 }

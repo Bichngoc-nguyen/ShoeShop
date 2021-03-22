@@ -30,10 +30,10 @@ class Customers extends Database
     }
 
     // search Customers
-    public function searchCus($time)
+    public function searchCus($name)
     {
         $sql = "SELECT c.id, c.username, c.address, c.Phone, c.email, c.note, o.customer_id, o.sum, o.time, o.status
-        FROM (orders o join customer c ON o.customer_id = c.id) WHERE (username like '%$time%')";
+        FROM (orders o join customer c ON o.customer_id = c.id) WHERE (username like '%$name%') or (status like '%$name%')";
         $result = $this->executeQuery($sql);
         return $result;
     }
@@ -62,12 +62,12 @@ class Customers extends Database
     // delete order 
     public function deleteCus($id)
     {
-        $sql = "DELETE c,o FROM customer c INNER JOIN
-                orders o ON o.customer_id = c.id 
-            WHERE c.id = $id";
-        // $sql = "DELETE customer, orders FROM customer INNER JOIN orders ON orders.customer_id = customer.id WHERE orders.customer_id = $id";
-        // var_dump($sql);
-        // die();
+        $sql = "DELETE customer, orders FROM customer INNER JOIN
+                orders ON orders.customer_id = customer.id 
+            WHERE customer.id = $id";
+        // $sql = "DELETE product, productdetail FROM product INNER JOIN productdetail ON productdetail.product_id = product.id WHERE product.id=$id";
+        var_dump($sql);
+        die();
           $result = $this->executeQuery($sql);
           return $result;
     }

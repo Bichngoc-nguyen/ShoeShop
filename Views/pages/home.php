@@ -15,6 +15,36 @@
 ?>
 <!-- body -->
 <div class="content m-auto">
+    <div id="slide" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+            <li data-target="#slide" data-slide-to="0" class="active"></li>
+            <li data-target="#slide" data-slide-to="1"></li>
+            <li data-target="#slide" data-slide-to="2"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="../../public/img/banner.jpg" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="../../public/img/banner2.jpg" width="1100" height="500">
+            </div>
+            <div class="carousel-item">
+                <img src="../../public/img/banner3.jpg" width="1100" height="500">
+            </div>
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="carousel-control-prev" href="#slide" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#slide" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+    </div>
+    <!-- sản phẩm mới -->
     <div class="content_productsNew">
         <h1>SẢN PHẨM MỚI</h1><hr class="mt-0">
         <form action="" method="GET">
@@ -38,7 +68,7 @@
     </div>
     <!-- shop hoa của cửa hàng -->
     <div class="content_active p-5">
-        <h1>SHOP HOA CỦA CỬA HÀNG</h1> <hr class="mt-0 mb-5">
+        <h1>SHOESHOP CỦA CỬA HÀNG</h1> <hr class="mt-0 mb-5">
         <!-- row 1  -->
         <div class="row ml-0 mr-0 container">
             <div class="col-xs-12 col-sm-6 col-lg-6 content-active_item mb-4">   
@@ -93,7 +123,7 @@
 
     <!-- đánh giá của khách hàng về shop -->
     <div class="content_feedback mt-5">
-        <h1>ĐÁNH GIÁ CỦA KHÁCH HÀNG VỀ SHOP</h1><hr class="mt-0 mb-5">
+        <h1>KHÁCH HÀNG NÓI GÌ VỀ SHOESHOP</h1><hr class="mt-0 mb-5">
         <div class="row mr-0 ml-0">
             <div class="col-xs-12 col-sm-6 col-lg-3 img_feedback text-center">
                 <img src="../../public/img/feedback1.jpg" alt=""><br><br>

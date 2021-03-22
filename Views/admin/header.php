@@ -1,3 +1,4 @@
+<?php session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
                 <h3><a href="../pages/index.php">Shoe Shop</a></h3>
             </div>
             <div class="col-6 text-right">
-                <a href="logout.php"><i class="fa fa-user logout"></i></a>
+                <a href="logout.php" title="Logout"><i class="fa fa-user logout"></i></a>
             </div>
         </div>
         <div class="main">
@@ -28,7 +29,7 @@
            <div class="main-sidebar">
             <div class="content_sidebar">
                 <ul>
-                    <li class="sidebar-cate"><a href="index.php"><i class="fa fa-home"></i> DashBoarch</a></li>
+                    <li><a href="index.php"><i class="fa fa-home"></i> DashBoarch</a></li>
                     <li class="sidebar-cate"><a href="#"><i class="fa fa-tachometer"></i> Category</a></li>
                     <li class="cate-item p-0">
                         <ul>
@@ -72,11 +73,12 @@
                     <li class="sidebar-selling-products"><a href="../admin/sellingProducts.php"><i class="fa fa-line-chart"></i> Selling Products</a></li>
                     <li class="orders-products"><a href="../admin/ListOrders.php"><i class="fa fa-calculator"></i>  Orders</a></li>
                     <li class="customers-products"><a href="../admin/listCustomers.php"><i class="fa fa-users"></i> Customers</a></li>
+                    <li><a href="listContact.php"><i class="fa fa-phone"></i> Contact Customers</a></li>
                     <li class="sidebar-users"><a href=""> <i class="fa fa-user-circle-o"></i> Users</a></li>  
                     <li class="users-item p-0">
                         <ul>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast"></i> Create Users</a></li>
-                            <li class="pl-4"><a href="#"> <i class="fa fa-eercast"></i> Lists Users</a></li>
+                            <li class="pl-4"><a href="createUser.php"> <i class="fa fa-eercast"></i> Create Users</a></li>
+                            <li class="pl-4"><a href="listUsers.php"> <i class="fa fa-eercast"></i> Lists Users</a></li>
                         </ul>
                     </li>
                 </ul>

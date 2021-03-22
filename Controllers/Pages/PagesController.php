@@ -114,7 +114,7 @@ class PagesController
          if (isset($_GET['page']) && isset($_GET['list'])) {
              $item_per_page = $_GET['list'];
              $pageId = $_GET['page'];
-             if ($pageId == 1 || $pageId < $totalNum) {
+             if ($pageId <= 1 || $pageId < $totalNum) {
                  $btnPage = $pageId + 1;
                  $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Next</a>";
              }elseif ($pageId == $totalNum ) {
@@ -192,7 +192,7 @@ class PagesController
          if (isset($_GET['page']) && isset($_GET['list'])) {
              $item_per_page = $_GET['list'];
              $pageId = $_GET['page'];
-             if ($pageId == 1 || $pageId < $totalNum) {
+             if ($pageId <= 1 || $pageId < $totalNum) {
                  $btnPage = $pageId + 1;
                  $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Next</a>";
              }elseif ($pageId == $totalNum ) {
@@ -274,7 +274,7 @@ class PagesController
           if (isset($_GET['page']) && isset($_GET['list'])) {
               $item_per_page = $_GET['list'];
               $pageId = $_GET['page'];
-              if ($pageId == 1 || $pageId < $totalNum) {
+              if ($pageId <= 1 || $pageId < $totalNum) {
                   $btnPage = $pageId + 1;
                   $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Next</a>";
               }elseif ($pageId == $totalNum ) {
@@ -356,7 +356,7 @@ class PagesController
           if (isset($_GET['page']) && isset($_GET['list'])) {
               $item_per_page = $_GET['list'];
               $pageId = $_GET['page'];
-              if ($pageId == 1 || $pageId < $totalNum) {
+              if ($pageId <= 1 || $pageId < $totalNum) {
                   $btnPage = $pageId + 1;
                   $pagination = "<a class='pagination' href=?list=".$item_per_page."&page=".$btnPage.">Next</a>";
               }elseif ($pageId == $totalNum ) {
@@ -394,4 +394,29 @@ class PagesController
             }
         }
     }
+
+    // search products home
+    public function searchProducts()
+    {
+       if (empty($this->request['name'])===false) {
+          switch ($this->request['name']) {
+              case 'sneakers':
+                 header("location: sneakers.php");
+                  break;
+              case 'got':
+                 header("location: got.php");
+                  break;
+              case 'sandals':
+                 header("location: sandals.php");
+                  break;
+              case 'bupbe':
+                 header("location: bupbe.php");
+                  break;
+              default:
+                header("location: index.php");
+                  break;
+          }
+       }
+    }
+
 }

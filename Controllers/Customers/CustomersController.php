@@ -37,9 +37,9 @@ class CustomersController
     public function searchCus()
     {
         $search='';
-        if (empty($this->request['name'])===false) {
+        if (empty($this->request['time'])===false) {
             $customers = new  Customers();
-            $search = $customers->searchCus($this->request['name']);
+            $search = $customers->searchCus($this->request['time']);
             return $search;
         }else{
             return $this->getCustomers();

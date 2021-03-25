@@ -8,32 +8,38 @@ class Products extends Database
         parent::__construct();
     }
 
+    // create category
+    public function createCate($name)
+    {
+       $sql = "INSERT INTO categories (nameCategories) VALUES ('$name')";
+       return $this->executeQuery($sql);
+    }
+
     // get category
     public function getAllListCategories()
     {
-        $sql = "SELECT nameCategories FROM categories";
+        $sql = "SELECT * FROM categories";
         return $this->executeQuery($sql);
     }
 
     // create products
     public function createProducts($name, $photo, $price, $quantity, $descript, $cate)
     {
-        $sql= "INSERT INTO product (nameProduct,photo, price,quantity) VALUES ('$name', '$photo', '$price', '$quantity')";
-        $result = $this->executeQuery($sql);
+            $sql= "INSERT INTO product (nameProduct,photo, price,quantity,category_id) VALUES ('$name', '$photo', '$price', '$quantity','$cate')";
+            $result = $this->executeQuery($sql);
         if ($result==true) {
             $last_id = $this->conn->insert_id;
-            $sql ="INSERT INTO productDetail (product_id, image) VALUES ('$last_id', '$descript')";
-            $result1 = $this->executeQuery($sql);
-        }
-        if ($result1==true) {
-            $last_id = $this->conn->insert_id;
-            $sql ="INSERT INTO categories (nameCategories, product_id ) VALUES ('$cate', '$last_id')";
-            $result2 = $this->executeQuery($sql);
+            if (!empty($descript)) {
+                foreach ($descript as $item) {
+                    $sql ="INSERT INTO productDetail (product_id, image) VALUES ('$last_id', '$item')";
+                    $result = $this->executeQuery($sql);
+                }
+            }
         }
         else{
             echo "error";
         }
-        return $result2;
+        return $result;
     }
 
     /**
@@ -42,18 +48,34 @@ class Products extends Database
     // list products theo id 
     public function getIdProduct($id)
     {
-        $sql = "SELECT p.nameProduct, pd.image,p.photo,p.price, p.quantity FROM product p join productdetail pd ON p.id = pd.product_id WHERE product_id = '$id'";
-        return $result = $this->executeQuery($sql);
+        $sql = "SELECT p.id , p.nameProduct, pd.image,p.photo,p.price, p.quantity 
+        FROM product p join productdetail pd ON p.id = pd.product_id WHERE product_id = '$id' group by p.id";
+        return $this->executeQuery($sql);
     }
 
     // update product
-    public function updateProduct($id, $name, $photo, $price, $quantity, $image)
+    public function updateProduct($id, $name, $photo, $price, $quantity, $descript)
     {
-        $sql = "UPDATE product p inner join productdetail pd 
-        on p.id = pd.product_id 
-        set p.nameProduct = '$name', p.photo = '$photo', p.price = '$price', p.quantity = '$quantity', pd.image = '$image'
-        WHERE p.id = $id";
-        return $this->executeQuery($sql);
+         $sql = "UPDATE product set nameProduct = '$name', photo = '$photo', price = '$price', quantity = '$quantity'
+        WHERE id = $id ";
+        $result = $this->executeQuery($sql);
+        if ($result===true) {
+            $sql1 = "SELECT * FROM productDetail WHERE product_id = $id";
+            $result1 = $this->executeQuery($sql1);
+            while( $row = mysqli_fetch_assoc( $result1)){
+                $new_array[] = $row; // Inside while loop
+            }
+            if (!empty($descript)) {
+                $i = 0;
+                foreach ($descript as $item) {
+                    $tam = $new_array[$i]['id'];
+                    $sql2 ="UPDATE productDetail SET product_id = '$id',image = '$item' WHERE id = $tam";
+                    $re = $this->executeQuery($sql2);
+                    $i++;
+                }
+            }
+        }
+        return $result;
     }
 
     // delete product
@@ -76,7 +98,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
         FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sneakers'";
+        join categories ct ON p.category_id = ct.id) WHERE ct.nameCategories = 'Sneakers' group by p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
@@ -86,9 +108,16 @@ class Products extends Database
     // list giày sneakers 
     public function getAllListSneakers($item_per_page,$offset)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sneakers' limit"." ".$item_per_page." "." OFFSET"." ".$offset;
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sneakers' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
+        return $this->executeQuery($sql);
+    }
+
+    // get image with id of product_id
+    public function getGalleryByProductId($productId)
+    {
+        $sql = "SELECT * FROM productDetail WHERE product_id = $productId";
         return $this->executeQuery($sql);
     }
 
@@ -104,7 +133,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
         FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Bupbe'";
+        join categories ct ON p.category_id = ct.id) WHERE ct.nameCategories = 'BupBe'  group by p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
@@ -116,7 +145,7 @@ class Products extends Database
     {
      $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
      FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-     join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Bupbe' limit ".$item_per_page." OFFSET ".$offset;
+     join categories ct ON p.category_id = ct.id) WHERE ct.nameCategories = 'BupBe' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
      return $this->executeQuery($sql);
     }
     // end shoe bupbe
@@ -129,7 +158,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
         FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sandals'";
+        join categories ct ON p.category_id = ct.id) WHERE ct.nameCategories = 'Sandals' GROUP BY p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
@@ -139,9 +168,11 @@ class Products extends Database
     // list giày sandals
     public function getAllListSandals($item_per_page, $offset)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sandals' limit ".$item_per_page." OFFSET ".$offset;
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sandals' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
+        var_dump($sql);
+        die;
         return $this->executeQuery($sql);
     }
     // end shoe sandals
@@ -152,9 +183,9 @@ class Products extends Database
      // list tổng sổ dòng tables Gots
     public function getTotalNumGot($item_per_page,$offset)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Cao Gót'";
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' GROUP BY p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
@@ -163,9 +194,9 @@ class Products extends Database
     // list giày got
     public function getAllListGot($item_per_page,$offset)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Cao gót' limit ".$item_per_page." OFFSET ".$offset;
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
         return $this->executeQuery($sql);
     }
     // end shoe Gots
@@ -173,36 +204,38 @@ class Products extends Database
     // search Sneakers
     public function searchSneakers($name)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sneakers' AND p.nameProduct Like '%".$name."%'";
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sneakers' AND p.nameProduct LIKE '%".$name."%' GROUP BY p.nameProduct";
+        // var_dump($sql);
+        // die;
         return $this->executeQuery($sql);
     }
 
     // search Bupbe
     public function searchBupbe($name)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Bupbe' AND p.nameProduct LIKE '%".$name."%'";
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Bupbe' AND p.nameProduct LIKE '%".$name."%' GROUP BY p.nameProduct";    
         return $this->executeQuery($sql);
     }
 
     // search sandals
     public function searchSandals($name)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Sandals' AND p.nameProduct LIKE '%".$name."%'";
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sandals' AND p.nameProduct LIKE '%".$name."%'";
         return $this->executeQuery($sql);
     }
     
     // search sandals
     public function searchGots($name)
     {
-        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity, ct.nameCategories 
-        FROM (( product p join productDetail pd ON p.id = pd.product_id) 
-        join categories ct ON pd.id = ct.product_id) WHERE ct.nameCategories = 'Cao gót' AND p.nameProduct LIKE '%".$name."%'";
+        $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
+        FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' AND p.nameProduct LIKE '%".$name."%'";
         return $this->executeQuery($sql);
     }
 
@@ -220,9 +253,9 @@ class Products extends Database
      public function getOrderSell($item_per_page, $offset)
      {
         
-         $sql = "SELECT c.username, o.id, o.customer_id, o.nameProduct, SUM(o.quantity) AS quantity, o.price, o.sum,o.time, o.status 
+         $sql = "SELECT c.username, o.id, o.customer_id, o.nameProduct, SUM(o.quantity) AS quantity, o.price, o.sum,c.time, c.status 
          FROM (orders o join customer c ON o.customer_id = c.id) 
-         WHERE o.quantity > 5 GROUP BY nameProduct ORDER BY quantity limit ".$item_per_page." OFFSET ".$offset ;
+         WHERE o.quantity > 1 GROUP BY nameProduct ORDER BY quantity limit ".$item_per_page." OFFSET ".$offset ;
          $result = $this->executeQuery($sql);
          return $result;
      }
@@ -233,7 +266,7 @@ class Products extends Database
 
     public function getTotalNumBill($item_per_page,$offset)
     {
-        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum,o.time, o.status
+        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum,c.time, c.status
         FROM (orders o join customer c ON o.customer_id = c.id)";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
@@ -244,7 +277,7 @@ class Products extends Database
     // get order bill ALL
     public function getOrderBill($item_per_page, $offset)
     {
-        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum,o.time, o.status
+        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum,c.time, c.status
         FROM (orders o join customer c ON o.customer_id = c.id) limit ".$item_per_page." OFFSET ".$offset;
         $result = $this->executeQuery($sql);
         return $result;
@@ -261,7 +294,7 @@ class Products extends Database
     // search bill
     public function searchBill($time)
     {
-        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum, o.time, o.status
+        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum, c.time, c.status
         FROM (orders o join customer c ON o.customer_id = c.id) WHERE (time like '%$time%') 
         or (nameProduct like '%$time%') or (username like '%$time%') or (status like '%$time%')";
         $result = $this->executeQuery($sql);
@@ -278,7 +311,7 @@ class Products extends Database
     // edit bill with id
     public function getEditBill($id)
     {
-        $sql = "SELECT  c.username, o.id, o.nameProduct, o.quantity, o.price, o.sum, o.status
+        $sql = "SELECT  c.username, o.id, o.nameProduct, o.quantity, o.price, o.sum, c.status
           FROM (orders o join customer c ON o.customer_id = c.id) WHERE o.id = $id LIMIT 1";
           $result = $this->executeQuery($sql);
           return $result;
@@ -287,7 +320,7 @@ class Products extends Database
     // detail bill
     public function getDetailBill($id)
     {
-        $sql = "SELECT  c.username, c.address, c.Phone, c.email, c.note, o.id, o.nameProduct, o.quantity, o.price, o.sum
+        $sql = "SELECT  c.username, c.address, c.Phone, c.email, c.note,c.time, o.id, o.nameProduct, o.quantity, o.price, o.sum
           FROM (orders o join customer c ON o.customer_id = c.id) WHERE o.customer_id = $id ";
           $result = $this->executeQuery($sql);
           return $result;

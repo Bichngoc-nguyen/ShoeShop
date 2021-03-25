@@ -28,18 +28,18 @@ class ProductsController
         return $file;
     }
 
-    // kiểm tra upload file(imge)
+    // kiểm tra upload file(imge) insert nhìu hình
     public function checkUploadFileDetail()
     {
-       if (isset($_FILES['descript'])) {
-           if ($_FILES['descript']['error'] > 0) {
-               echo "upload file error";
-           }else{
-               move_uploaded_file($_FILES['descript']['tmp_name'], '../../public/upload/' . $_FILES['descript']['name']);
-               $files =  $_FILES['descript']['name'];
-           }
-       }
-       return $files;
+        $files = [];
+        if (isset($_FILES['descript'])) {
+            foreach ($_FILES['descript']["name"] as $key=>$name) {
+                $name = date('YmdHis') . $name; //gán time cho mỗi hình
+                move_uploaded_file($_FILES['descript']['tmp_name'][$key], '../../public/upload/' . $name);
+                $files[] = $name;
+            }
+        }
+        return $files;
    }
 
     /**
@@ -72,6 +72,15 @@ class ProductsController
         while ($rows = $getId->fetch_assoc()) {
             $value[] = $rows;
         }
+        // get image detail theo product_id
+        foreach($value as $key=>$valueImg){
+            $getGallery = $products->getGalleryByProductId($valueImg['id']);
+            $valueGallery =[];
+            while ($rows = $getGallery->fetch_assoc()) {
+                $valueGallery[] = $rows['image'];
+            }
+            $value[$key]['gallery'] = $valueGallery;
+        }
         return $value;
     }
 
@@ -85,7 +94,7 @@ class ProductsController
             $files = $this->checkUploadFileDetail();
             $products = new Products();
             $update = $products->updateProduct($this->request['id'],$this->request['name'], $file, 
-                $this->request['price'], $this->request['quantity'],$files,$this->request['cate']);
+                $this->request['price'], $this->request['quantity'],$files);
             if ($update) {
                 header('location: listSneakers.php');
             }
@@ -117,20 +126,28 @@ class ProductsController
      public function getAllListSneakers()
      {
          // số dòng hiển thị
-         $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
-         // số page hiện tại và tính số row page tiếp theo
-         $offset = ($this->current_page - 1 )* $item_per_page;
-         $products = new Products();
-         $getList = $products->getAllListSneakers($item_per_page, $offset);
-         $value =[];
-         while ($rows = $getList->fetch_assoc()) {
-             $products = 1;
-             $value[] = $rows;
-             $products++;
-         }if (empty($value)) {
+        $item_per_page = (empty($_GET['list'])===false?$_GET['list']:8);
+        // số page hiện tại và tính số row page tiếp theo
+        $offset = ($this->current_page - 1 )* $item_per_page;
+        $products = new Products();
+        $getList = $products->getAllListSneakers($item_per_page, $offset);
+        $value =[];
+        while ($rows = $getList->fetch_assoc()) {
+            $value[] = $rows;
+        }if (empty($value)) {
             $value = [];
         }
-         return $value;
+        // lấy ra tất cả image detail theo id 
+        foreach ($value as $key=>$valueImg) {
+            $getGallery = $products->getGalleryByProductId($valueImg['id']);
+            $valueGallery =[];
+            while ($rows = $getGallery->fetch_assoc()) {          
+                $valueGallery[] = $rows['image'];
+            }
+            $value[$key]['gallery'] = $valueGallery;
+        }
+
+        return $value;
      }
     
     /**
@@ -212,11 +229,19 @@ class ProductsController
         $getList = $products->getAllListBupbe($item_per_page, $offset);
         $value=[];
         while ($rows = $getList->fetch_assoc()) {
-            $products =1;
             $value[] = $rows;
-            $products++;
         }if (empty($value)) {
             $value = [];
+        }
+
+        // get image detail theo product_id
+        foreach($value as $key=>$valueImg){
+            $getGallery = $products->getGalleryByProductId($valueImg['id']);
+            $valueGallery =[];
+            while ($rows = $getGallery->fetch_assoc()) {
+                $valueGallery[] = $rows['image'];
+            }
+            $value[$key]['gallery'] = $valueGallery;
         }
         return $value;
     }
@@ -296,11 +321,18 @@ class ProductsController
         $getList = $products->getAllListSandals($item_per_page,$offset);
         $value=[];
         while ($rows = $getList->fetch_assoc()) {
-            $products=1;
             $value[] = $rows;
-            $products++;
         }if (empty($value)) {
             $value = [];
+        }
+        // get image detail products
+        foreach($value as $key=>$valueImg){
+            $getGallery = $products->getGalleryByProductId($valueImg['id']);
+            $valueGallery=[];
+            while ($rows = $getGallery->fetch_assoc()) {
+                $valueGallery[] = $rows['image'];
+            }
+            $value[$key]['gallery'] = $valueGallery;
         }
         return $value;
     }
@@ -381,9 +413,16 @@ class ProductsController
         $getList = $products->getAllListGot($item_per_page,$offset);
         $value=[];
         while ($rows = $getList->fetch_assoc()) {
-            $products=1;
             $value[] = $rows;
-            $products++;
+        }
+        // get image detail theo product_id
+        foreach($value as $key=>$valueImg){
+            $getGallery = $products->getGalleryByProductId($valueImg['id']);
+            $valueGallery =[];
+            while ($rows = $getGallery->fetch_assoc()) {
+                $valueGallery[] = $rows['image'];
+            }
+            $value[$key]['gallery'] = $valueGallery;
         }
         return $value;
     }
@@ -421,7 +460,7 @@ class ProductsController
         if (isset($_GET['page']) && isset($_GET['list'])) {
             $item_per_page = $_GET['list'];
             $pageId = $_GET['page'];
-            if ($pageId == 1 || $pageId < $totalNum) {
+            if ($pageId < 1 || $pageId < $totalNum) {
                 $btnPage = $pageId + 1;
                 $pagination = "<a href=?list=".$item_per_page."&page=".$btnPage." class='pagination'>Next</a>";
             }elseif ($pageId == $totalNum ) {
@@ -459,7 +498,21 @@ class ProductsController
         if (empty($this->request['name'])===false) {
             $products = new  Products();
             $search = $products->searchSneakers($this->request['name']);
-            return $search;
+            while ($rows = $search->fetch_assoc()) {
+                $value[] = $rows;
+            }if (empty($value)) {
+                $value = [];
+            }
+            // get image detail theo product_id
+            foreach($value as $key=>$valueImg){
+                $getGallery = $products->getGalleryByProductId($valueImg['id']);
+                $valueGallery =[];
+                while ($rows = $getGallery->fetch_assoc()) {
+                    $valueGallery[] = $rows['image'];
+                }
+                $value[$key]['gallery'] = $valueGallery;
+            }
+            return $value;
         }else{
             return $this->getAllListSneakers();
         }
@@ -473,7 +526,21 @@ class ProductsController
         if (empty($this->request['name'])===false) {
             $products = new  Products();
             $search = $products->searchBupbe($this->request['name']);
-            return $search;
+            while ($rows = $search->fetch_assoc()) {
+                $value[] = $rows;
+            }if (empty($value)) {
+                $value = [];
+            }
+            // get image detail theo product_id
+            foreach($value as $key=>$valueImg){
+                $getGallery = $products->getGalleryByProductId($valueImg['id']);
+                $valueGallery =[];
+                while ($rows = $getGallery->fetch_assoc()) {
+                    $valueGallery[] = $rows['image'];
+                }
+                $value[$key]['gallery'] = $valueGallery;
+            }
+            return $value;
         }else{
             return $this->getAllListBupbe();
         }
@@ -487,7 +554,21 @@ class ProductsController
         if (empty($this->request['name'])===false) {
             $products = new  Products();
             $search = $products->searchSandals($this->request['name']);
-            return $search;
+            while ($rows = $search->fetch_assoc()) {
+                $value[] = $rows;
+            }if (empty($value)) {
+                $value = [];
+            }
+            // get image detail theo product_id
+            foreach($value as $key=>$valueImg){
+                $getGallery = $products->getGalleryByProductId($valueImg['id']);
+                $valueGallery =[];
+                while ($rows = $getGallery->fetch_assoc()) {
+                    $valueGallery[] = $rows['image'];
+                }
+                $value[$key]['gallery'] = $valueGallery;
+            }
+            return $value;
         }else{
             return $this->getAllListSandals();
         }
@@ -501,7 +582,21 @@ class ProductsController
         if (empty($this->request['name'])===false) {
             $products = new  Products();
             $search = $products->searchGots($this->request['name']);
-            return $search;
+            while ($rows = $search->fetch_assoc()) {
+                $value[] = $rows;
+            }if (empty($value)) {
+                $value = [];
+            }
+            // get image detail theo product_id
+            foreach($value as $key=>$valueImg){
+                $getGallery = $products->getGalleryByProductId($valueImg['id']);
+                $valueGallery =[];
+                while ($rows = $getGallery->fetch_assoc()) {
+                    $valueGallery[] = $rows['image'];
+                }
+                $value[$key]['gallery'] = $valueGallery;
+            }
+            return $value;
         }else{
             return $this->getAllListGot();
         }
@@ -637,7 +732,7 @@ class ProductsController
         if (isset($_GET['page']) && isset($_GET['list'])) {
             $item_per_page = $_GET['list'];
             $pageId = $_GET['page'];
-            if ($pageId == 1 || $pageId < $totalNum) {
+            if ($pageId <= 1 || $pageId < $totalNum) {
                 $btnPage = $pageId + 1;
                 $pagination = "<a href=?list=".$item_per_page."&page=".$btnPage." class='pagination'>Next</a>";
             }elseif ($pageId == $totalNum ) {

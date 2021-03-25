@@ -122,7 +122,7 @@ a.nav-link.menu-list_item_link:hover {
 
 img.description-img-detail {
     width: 22%;
-    height: 4vw;
+    height: 8vw;
     border: 1px solid #c7c7c7;
 }
 
@@ -321,4 +321,15 @@ a.productsNew-more {
 
 .news-banner h2 {
     font-size: 6vw;
+}
+
+.news-banner_menu {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.news-banner_menu ul li {
+    display: contents;
+    color: white;
 }

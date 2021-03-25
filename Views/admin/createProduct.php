@@ -15,15 +15,15 @@ if (isset($_POST['add'])) {
     <form action="" method="POST" enctype="multipart/form-data">
         <h3>Register Giày </h3>
         <label>Name :</label>
-        <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm">
+        <input type="text" class="form-control" name="name" placeholder="Nhập tên sản phẩm" require>
         <label>Desciption :</label>
-        <input type="file" name="descript" multiple="multiple" value=""><br>
+        <input type="file" name="descript[]" multiple="multiple" require><br>
         <label>Image :</label>
         <input type="file" name="photo" value=""> <br>
         <label>Price :</label>
-        <input type="text" class="form-control" name="price" placeholder="Giá sản phẩm">
+        <input type="text" class="form-control" name="price" require placeholder="Giá sản phẩm">
         <label>Quantity :</label>
-        <input type="text" class="form-control" name="quantity" placeholder="Số lượng sản phẩm">
+        <input type="text" class="form-control" name="quantity" placeholder="Số lượng sản phẩm" require>
         <label>Category :</label>
         <?php $cate->getCategory()?>
         <input type="submit" class="btn btn-success"  value="Thêm" name="add">

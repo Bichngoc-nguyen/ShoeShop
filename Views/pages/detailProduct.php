@@ -33,7 +33,9 @@ if (isset($_POST['buy'])) {
                         </div>
                         <!-- hinh anh descript -->
                         <div class="products-item_description small_img mt-1">
-                            <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                            <?php foreach($value['gallery'] as $item): ?>
+                                <img class="description-img-detail" src="<?php echo '../../public/upload/'.$item; ?>" alt="">
+                            <?php endforeach ?>
                         </div>
                     </div>
                     <!-- chi tiet sp -->

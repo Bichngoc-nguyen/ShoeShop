@@ -38,6 +38,10 @@ if (isset($_GET['id'])) {
                             <b><i>Note: </i></b>
                             <?php echo $value['note'];?>
                         </p>
+                        <p>
+                            <b><i>Ngày Đặt: </i></b>
+                            <?php echo $value['time'];?>
+                        </p>
                         <?php break; } ?>
                     <?php endif ?>
                 </div>

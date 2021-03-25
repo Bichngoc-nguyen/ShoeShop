@@ -8,5 +8,12 @@
             <h2>Tin Tức</h2>
             <p>Trang chủ > Blog</p>
         </div>
+        <div class="news-banner_menu">
+            <ul>    
+                <li><a href="allPost.php" class="menu_item">All Blogs Post</a></li>
+                <li><a href="choosing.php" class="menu_item">Mẹo Shopping</a></li>
+                <li><a href="newsFashion.php" class="menu_item">Tin Tức Thời Trang</a></li>
+            </ul>
+        </div>
     </div>
 </div>

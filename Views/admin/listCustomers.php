@@ -13,20 +13,21 @@ $numPage = $customer->getNumPageCus();
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        Tìm kiếm: <input type="search" class="search p-2 mb-2" name="name" placeholder="Search....">
+        <input type="search" class="search p-2 mb-2" name="time" placeholder="Nhập tên SP, tên KH, trạng thái hoặc thời gian....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">
         <table class="list text-center" border="1">
             <tr>
-                <td>STT</td>
-                <td>Tên Khách Hàng</td>
-                <td>Địa Chỉ</td>
-                <td>Số Điện Thoại</td>
-                <td>Email</td>
-                <td>Note</td>
-                <td>Trạng Thái</td>
-                <td colspan="3">Active</td>
+                <th>STT</th>
+                <th>Tên Khách Hàng</th>
+                <th>Địa Chỉ</th>
+                <th>Số Điện Thoại</th>
+                <th>Email</th>
+                <th>Note</th>
+                <th>Trạng Thái</th>
+                <th>Thời gian</th>
+                <th colspan="3">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
               <?php $stt = 1; foreach ($search as $value) {?>
@@ -38,6 +39,7 @@ $numPage = $customer->getNumPageCus();
                     <td><?php echo $value['email']; ?></td>
                     <td><?php echo $value['note']?></td>
                     <td><?php echo $value['status'] ?></td>
+                    <td><?php echo $value['time'] ?></td>
                     <td><a href="updateCus.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                     <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>
                     <td><a href="deleteCus.php?id=<?php echo $value['id'] ?>">Del</a></td>

@@ -18,14 +18,12 @@ $getBill = $products->getOrderBill();
     <form action="" method="GET">
         <table class="list text-center" border="1">
             <tr>
-                <td>STT</td>
-                <td>Tên Khách Hàng</td>
-                <td>Tên Sản Phẩm</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Tổng Giá Tiền</td>
-                <td>Tình Trạng</td>
-                <td>Thời gian</td>
-                <td colspan="2">Active</td>
+                <th>STT</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Tổng Giá Tiền</th>
+                <th>Thời gian</th>
+                <th colspan="2">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
               <?php $stt = 1; foreach ($search as $value) {?>
@@ -35,11 +33,9 @@ $getBill = $products->getOrderBill();
                 ?>
                  <tr>
                     <td class="color"><?php echo $stt; ?></td>
-                    <td><?php echo $value['username']; ?></td>
                     <td><?php echo $value['nameProduct']; ?></td>
                     <td><?php echo $value['quantity']; ?></td>
                     <td><?php echo $quantity * $price.".000đ"; ?></td>
-                    <td><?php echo $value['status']?></td>
                     <td><?php echo $value['time'] ?></td>
                     <td><a href="updateBill.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                     <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>

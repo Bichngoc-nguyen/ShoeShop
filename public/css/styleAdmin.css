@@ -44,16 +44,11 @@
     text-decoration: none;
 }
 
-.cate-item {
-    opacity: 0;
-    display: none;
-}
-
 .products-item {
     opacity: 0;
     display: none;
 }
-
+/* 
 .sneakers-item {
     opacity: 0;
     display: none;
@@ -70,7 +65,7 @@
 .bupbe-item {
     opacity: 0;
     display: none;
-}
+} */
 
 .users-item {
     opacity: 0;
@@ -191,4 +186,16 @@ table.table img {
 .content_user {
     width: 50%;
     margin: auto;
+}
+
+/* category */
+.main-createCate.mt-5 {
+    width: 50%;
+    margin: auto;
+}
+
+.createCate {
+    background: aliceblue;
+    border-radius: 11px;
+    border: 1px solid #c1b6b6;
 }

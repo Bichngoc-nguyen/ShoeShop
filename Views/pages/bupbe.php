@@ -22,7 +22,9 @@
                                 <a href="detailProduct.php?id=<?php echo $value['id'];?>"><img src="<?php echo '../../public/upload/'.$value['photo'];?>" alt=""></a>
                             </div>
                             <div class="products-item_description mt-1">
-                                <img class="description-img-detail" src="<?php echo '../../public/upload/'.$value['image'];?>" alt="">
+                                <?php foreach($value['gallery'] as $item): ?>
+                                    <img class="description-img-detail" src="<?php echo '../../public/upload/'.$item; ?>" alt="">
+                                <?php endforeach ?>
                                 <p class="description-price"><?php echo $value['price'].",000đ"?></p>
                                 <p><?php echo $value['nameProduct']?></p>
                             </div>

@@ -11,52 +11,55 @@ class ConfirmController
         $this->request = $request->getInput();
     }
 
-    // update cart
-    // public function updateCart()
-    // {
-    //     if (isset($_SESSION['cart'])) {
-    //             $session_array = array(
-    //                 "id"=>$_GET["id"],
-    //                 "name"=>$this->request['nameProduct'],
-    //                 "price"=>$this->request['price']+$this->request['price'],
-    //                 "size"=>$this->request['size'],
-    //                 "quantity"=>$this->request['quantity']+1
-    //             );
-    //         $_SESSION['cart'] = $session_array;
-    //         var_dump(array_unique($_SESSION['cart']));
-    //         // die();
-    //         header('location: cart.php');
-    //     }
-    // }
+    // tạo session cho giỏ hàng
     public function postCart()
     {
+        // check isset đã có session cart 
         if (isset($_SESSION['cart'])) {
-            $session_id = array_column($_SESSION['cart'],"id");
-            if (in_array($_GET['id'], $session_id)) {
-                $count = count($_SESSION['cart']);
-                $session_array = array(
-                    $_GET["id"]=>"id",
-                    $this->request['nameProduct']=>"name",
-                    $this->request['price']=>"price",
-                    $this->request['size']=>"size",
-                  $this->request['quantity']+1 =>"quantity"
-                );
-            $_SESSION['cart'][$count] = $session_array;
-            header('location: cart.php');
-            }else{
-                $count = count($_SESSION['cart']);
-                $session_array = array(
-                    "id"=>$_GET["id"],
-                    "name"=>$this->request['nameProduct'],
-                    "price"=>$this->request['price'],
-                    "size"=>$this->request['size'],
-                    "quantity"=>$this->request['quantity']
-                );
-            $_SESSION['cart'][$count] = $session_array;
-            header('location: cart.php');
+            // nếu exist id trong session cart 
+            if (isset($_GET['id'])) {
+                $key = "";
+                foreach ($_SESSION['cart'] as $keyItem=>$item) {
+                    if ($item["id"] == $this->request['id']) {
+                        $key = $keyItem;
+                        break;
+                    }
+                }
+                //thêm từ sp đã có trong giỏ hàng($_GET)
+                // nếu đã tồn tại id trong session cart thì công thêm số lượng vào cart có id đó
+                if ($key !== "") {
+                    $_SESSION['cart'][$key]["quantity"] += $this->request['quantity'];
+                } 
+                // ngược lại id chưa có trong session cart
+                // thêm sp chưa có trong giỏ hàng vào ($_GET)
+                else {
+                    $session_array = array(
+                        "id"=> $this->request['id'],
+                        "name"=>$this->request['nameProduct'],
+                        "price"=>$this->request['price'],
+                        "size"=>$this->request['size'],
+                        "quantity"=>$this->request['quantity']
+                    );
+                    $_SESSION['cart'][] = $session_array;
+                    
+                }
             }
-        }else{
-            unset($_SESSION['cart']['id']);
+            // update giỏ hàng ($_POST)
+             else {
+                foreach (array_keys($_SESSION['cart']) as $key) {
+                    $_SESSION['cart'][$key] = array(
+                        "id"=> $this->request['id'][$key],
+                        "name"=>$this->request['nameProduct'][$key],
+                        "price"=>$this->request['price'][$key],
+                        "size"=>$this->request['size'][$key],
+                        "quantity"=>$this->request['quantity'][$key]
+                    );
+                }
+            }
+            header('location: cart.php');
+        } 
+       // tạo session cart  
+        else{
             $session_array = array(
                 "id"=>$this->request["id"],
                 "name"=>$this->request['nameProduct'],
@@ -80,16 +83,15 @@ class ConfirmController
     {
         if ($_GET['action'] == "clean") {
             unset($_SESSION['cart']);
-            echo "<script> window.location='cart.php';</script>";
-        }
-        if ($_GET['action']=="remove") {
+        } else if ($_GET['action']=="remove") {
             foreach($_SESSION['cart'] as $key => $value){
                 if ($value['id']==$_GET['id']) {
                     unset($_SESSION['cart'][$key]);
-                    echo "<script> window.location='cart.php';</script>";
+                    break;
                 }
             }
         }
+        header('location: cart.php');
     }
 
     // action total

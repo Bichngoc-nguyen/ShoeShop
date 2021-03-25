@@ -55,7 +55,11 @@ $getSelling = $products->getSellingProducts();
                         <td class="color"><?php echo $stt; ?></td>
                         <td><?php echo $value['nameProduct']; ?></td>
                         <td><img src="<?php echo '../../public/upload/'.$value['photo']; ?>" alt=""></td>
-                        <td><img src="<?php echo '../../public/upload/'.$value['image']; ?>" alt=""></td>
+                        <td>
+                            <?php foreach($value['gallery'] as $item): ?>
+                                <img src="<?php echo '../../public/upload/'.$item; ?>" alt="">
+                            <?php endforeach ?>
+                        </td>
                         <td><?php echo $value['price']; ?></td>
                         <td><?php echo $value['quantity']; ?></td>
                         <td><?php echo $quanSell?></td>

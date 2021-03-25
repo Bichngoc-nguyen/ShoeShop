@@ -18,12 +18,12 @@ $getBill = $products->getOrderSell();
     <form action="" method="GET">
         <table class="list text-center" border="1">
             <tr>
-                <td>STT</td>
-                <td>Tên Sản Phẩm</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Tổng Giá Tiền</td>
-                <td>Thời gian</td>
-                <td colspan="2">Active</td>
+                <th>STT</th>
+                <th>Tên Sản Phẩm</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Tổng Giá Tiền</th>
+                <th>Thời gian</th>
+                <th colspan="2">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
               <?php $stt = 1; foreach ($search as $value) {?>

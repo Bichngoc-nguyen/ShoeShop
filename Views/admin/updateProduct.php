@@ -22,7 +22,7 @@ if (isset($_POST['add'])) {
           <label>Name :</label>
           <input type="text" class="form-control" name="name" value="<?php echo $value['nameProduct'];?>">
           <label>Desciption :</label>
-          <input type="file" name="descript" multiple="multiple" 
+          <input type="file" name="descript[]" multiple="multiple" 
           value="<?php echo '<img src=" ./../public/upload/"'.$value['image']?>"><br>
           <label>Image :</label>
           <input type="file" name="photo"> <br>

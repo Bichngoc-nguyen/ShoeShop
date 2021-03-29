@@ -6,7 +6,7 @@
     <div class="news-banner container-fluid pl-0 pr-0">
         <div class="news-banner_text pt-5">
             <h2>Tin Tức</h2>
-            <p>Trang chủ > Blog</p>
+            <p><a href="index.php">TRANG CHỦ</a> > BLOG</p>
         </div>
         <div class="news-banner_menu">
             <ul>    

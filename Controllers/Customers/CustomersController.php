@@ -137,6 +137,8 @@ class CustomersController
     // delete order
     public function deleteCus($id)
     {
+        var_dump($id);
+        // die;
         $customer = new Customers();
         $del = $customer->deleteCus($id);
         if ($del) {

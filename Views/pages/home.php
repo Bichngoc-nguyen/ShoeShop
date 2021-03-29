@@ -46,7 +46,9 @@
     </div>
     <!-- sản phẩm mới -->
     <div class="content_productsNew">
-        <h1>SẢN PHẨM MỚI</h1><hr class="mt-0">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">SẢN PHẨM MỚI</h1>
+        </div>
         <form action="" method="GET">
             <div class="content-products row ml-0 mr-0">
                 <?php if (!empty($getNProducts)): ?>
@@ -70,7 +72,9 @@
     </div>
     <!-- shop hoa của cửa hàng -->
     <div class="content_active p-5">
-        <h1>SHOESHOP CỦA CỬA HÀNG</h1> <hr class="mt-0 mb-5">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">SHOESHOP CỦA CỬA HÀNG</h1>
+        </div>
         <!-- row 1  -->
         <div class="row ml-0 mr-0 container">
             <div class="col-xs-12 col-sm-6 col-lg-6 content-active_item mb-4">   
@@ -125,7 +129,9 @@
 
     <!-- đánh giá của khách hàng về shop -->
     <div class="content_feedback mt-5">
-        <h1>KHÁCH HÀNG NÓI GÌ VỀ SHOESHOP</h1><hr class="mt-0 mb-5">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">KHÁCH HÀNG NÓI GÌ VỀ SHOESHOP</h1>
+        </div>
         <div class="row mr-0 ml-0">
             <div class="col-xs-12 col-sm-6 col-lg-3 img_feedback text-center">
                 <img src="../../public/img/feedback1.jpg" alt=""><br><br>
@@ -152,7 +158,9 @@
 
     <!-- giày sneakers -->
     <div class="content_productsNew">
-        <h1>Giày Sneakers</h1><hr class="mt-0">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">Giày Sneakers</h1>
+        </div>
         <form action="" method="GET">
                 <div class="content-products row ml-0 mr-0">
                     <?php if (!empty($sneakers)): ?>
@@ -171,14 +179,16 @@
                         </div>
                      <?php }?>
                 <?php endif?>
+                <a href="sneakers.php" class="btn productsNew-more">Xem Tất cả sản phẩm >></a>
             </div>
          </form>
-         <a href="sneakers.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
     </div>
 
     <!-- giày sandals -->
     <div class="content_productsNew">
-        <h1>Giày Sandals</h1><hr class="mt-0">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">Giày Sandals</h1>
+        </div>
         <form action="" method="GET">
                 <div class="content-products row ml-0 mr-0">
                     <?php if (!empty($sandals)): ?>
@@ -197,14 +207,16 @@
                         </div>
                      <?php }?>
                 <?php endif?>
+                <a href="sandals.php" class="btn productsNew-more">Xem Tất cả sản phẩm >></a>
             </div>
          </form>
-         <a href="sandals.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
     </div>
 
     <!-- giày BupBe -->
     <div class="content_productsNew">
-        <h1>Giày BupBe</h1><hr class="mt-0">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">Giày BupBe</h1>
+        </div>
         <form action="" method="GET">
                 <div class="content-products row ml-0 mr-0">
                     <?php if (!empty($BupBe)): ?>
@@ -223,14 +235,16 @@
                         </div>
                      <?php }?>
                 <?php endif?>
+                <a href="bupbe.php" class="btn productsNew-more">Xem Tất cả sản phẩm >></a>
             </div>
          </form>
-         <a href="bupbe.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
     </div>
     
     <!-- giày got -->
     <div class="content_productsNew">
-        <h1>Giày Cao Gót</h1><hr class="mt-0">
+        <div class="content-title mb-5">
+            <h1 class="pl-5 pb-3 pr-5">Giày Cao Gót</h1>
+        </div>
         <form action="" method="GET">
                 <div class="content-products row ml-0 mr-0">
                     <?php if (!empty($got)): ?>
@@ -249,8 +263,14 @@
                         </div>
                      <?php }?>
                 <?php endif?>
+                <a href="got.php" class="btn productsNew-more">Xem Tất cả sản phẩm >></a>
             </div>
          </form>
-         <a href="got.php" class="btn productsNew-more">Xem Tất cả sản phẩm</a>
     </div>
+
 </div>
+    <!-- btn up/down -->
+    <div class="content_btnUpDown pl-3 pt-2 pr-3 pb-2">
+        <div class="btnUp"><i class="fa fa-chevron-up"></i></div>
+        <div class="btnDown"><i class="fa fa-chevron-down"></i></div>
+    </div>

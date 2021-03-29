@@ -171,8 +171,6 @@ class Products extends Database
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
         INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sandals' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
-        var_dump($sql);
-        die;
         return $this->executeQuery($sql);
     }
     // end shoe sandals
@@ -207,8 +205,6 @@ class Products extends Database
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
         INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Sneakers' AND p.nameProduct LIKE '%".$name."%' GROUP BY p.nameProduct";
-        // var_dump($sql);
-        // die;
         return $this->executeQuery($sql);
     }
 
@@ -255,7 +251,7 @@ class Products extends Database
         
          $sql = "SELECT c.username, o.id, o.customer_id, o.nameProduct, SUM(o.quantity) AS quantity, o.price, o.sum,c.time, c.status 
          FROM (orders o join customer c ON o.customer_id = c.id) 
-         WHERE o.quantity > 1 GROUP BY nameProduct ORDER BY quantity limit ".$item_per_page." OFFSET ".$offset ;
+         WHERE o.quantity > 3 GROUP BY nameProduct ORDER BY quantity limit ".$item_per_page." OFFSET ".$offset ;
          $result = $this->executeQuery($sql);
          return $result;
      }
@@ -267,7 +263,7 @@ class Products extends Database
     public function getTotalNumBill($item_per_page,$offset)
     {
         $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum,c.time, c.status
-        FROM (orders o join customer c ON o.customer_id = c.id)";
+        FROM (orders o join customer c ON o.customer_id = c.id) group by c.username";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);

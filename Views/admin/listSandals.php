@@ -19,16 +19,15 @@ $getSelling = $products->getSellingProducts();
     <form action="" method="POST">
         <table class="list text-center" border="1">
             <tr>
-                <td>STT</td>
-                <!-- <td>id</td> -->
-                <td>Tên SP</td>
-                <td>Hình Ảnh</td>
-                <td>Mô Tả</td>
-                <td>Giá</td>
-                <td>Số Lượng</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Số lượng Tồn Kho</td>
-                <td colspan="3">Active</td>
+                <th>STT</th>
+                <th>Tên SP</th>
+                <th>Hình Ảnh</th>
+                <th>Mô Tả</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Số lượng Tồn Kho</th>
+                <th colspan="3">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
               <?php $stt = 1; foreach ($search as $value) {?>

@@ -60,5 +60,30 @@ $(document).ready(function () {
     // size
     $("#size").zInput();
 
+    // btn UP
+    $(".btnUp").click(function (e) { 
+        e.preventDefault();
+        $("html, body").animate({transition: '0.4s', scrollTop: 0}, 1000);
+        $(".btnUp").addClass('hiden');
+        $(".btnUp").removeClass('show');
+        $(".btnDown").addClass('show');
+        $(".btnDown").removeClass('hiden');
+    });
+
+    // btn Down 
+    $(".btnDown").click(function (e) { 
+        e.preventDefault();
+        $("html, body").animate({transition: '0.4s', scrollTop: $(document).height() }, 1000);
+        $(".btnDown").addClass('hiden');
+        $(".btnDown").removeClass("show");
+        $(".btnUp").removeClass('hiden');
+        $(".btnUp").addClass('show');
+        // $(window).load(function() {
+        //   console.log("ddddddd");  
+        //     $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+        //   });
+    });
+    
+
 });
         

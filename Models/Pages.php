@@ -123,26 +123,26 @@ class Pages extends Database
     }
 
     /**
-     * Got
+     * wood
      * */ 
-    // list tổng sổ dòng tables Got
+    // list tổng sổ dòng tables wood   
     public function getTotalNumGot($item_per_page,$offset)
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
-        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Got'group by p.id";
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood'group by p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
         return $totalPages;
     }
     
-    // list giày Got 
-    public function getAllListGot($item_per_page,$offset)
+    // list giày wood   
+    public function getAllListGot ($item_per_page,$offset)
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
-        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Got'GROUP BY p.nameProduct limit"." ".$item_per_page." "." OFFSET"." ".$offset;
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood'GROUP BY p.nameProduct limit"." ".$item_per_page." "." OFFSET"." ".$offset; 
         return $this->executeQuery($sql);
     }
 

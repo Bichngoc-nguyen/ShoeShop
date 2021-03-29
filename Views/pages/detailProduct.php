@@ -16,7 +16,7 @@ if (isset($_POST['buy'])) {
 ?>
 <!-- body -->
 <div class="content m-auto">
-    <h3>SẢN PHẨM MỚI</h3><hr>
+<h4><a href="index.php">TRANG CHỦ</a> > SẢN PHẨM MỚI</h4><hr>
     <form action="" method="post">
         <div class="content-products row ml-0 mr-0">
             <?php if (!empty($getDetail)): ?>

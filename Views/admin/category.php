@@ -28,7 +28,7 @@ if (isset($_POST['add'])) {
                 <tr>
                     <th>Stt</th>
                     <th>Tên Danh Mục</th>
-                    <td colspan="2"></td>
+                    <th colspan="2">Active</th>
                 </tr>
                 <?php if(!empty($listCate)):?>
                     <?php $stt=1; foreach ($listCate as $value){?>

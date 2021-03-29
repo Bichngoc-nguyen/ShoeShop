@@ -12,7 +12,7 @@
 
 <div class="content m-auto">
     <div class="content_productsNew">
-        <h1>SẢN PHẨM MỚI</h1><hr class="mt-0">
+        <h4><a href="index.php">TRANG CHỦ</a> > GIÀY SANDALS</h4><hr class="mt-0">
         <form action="" method="GET">
             <div class="content-products row ml-0 mr-0">
                 <?php if (!empty($getList)): ?>

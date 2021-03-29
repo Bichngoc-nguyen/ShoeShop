@@ -26,7 +26,7 @@
                 <label>Địa Chỉ *</label>
                 <input type="text" name="address" class="form-control" required>
                 <label>Số Điện Thoại *</label>
-                <input type="text" name="phone" class="form-control" required>
+                <input type="text" name="phone" max="10" class="form-control" required>
                 <label>Email *</label>
                 <input type="email" name="email" class="form-control" required>
                 <label>Thông Tin Bổ Sung</label>

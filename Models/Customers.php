@@ -63,9 +63,9 @@ class Customers extends Database
     public function deleteCus($id)
     {
         $sql = "DELETE customer, orders FROM customer INNER JOIN orders ON orders.customer_id = customer.id WHERE customer.id = $id";
-          $result = $this->executeQuery($sql);
-          return $result;
+            return $this->executeQuery($sql);
     }
+    
 }
 
     

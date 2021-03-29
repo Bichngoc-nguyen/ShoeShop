@@ -19,18 +19,18 @@ if (isset($_POST['cancel'])) {
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <table class="list text-center" border="1">
+        <table class="list text-center table" border="1">
             <tr>
-                <td>STT</td>
-                <!-- <td>id</td> -->
-                <td>Tên SP</td>
-                <td>Hình Ảnh</td>
-                <td>Mô Tả</td>
-                <td>Giá</td>
-                <td>Số Lượng</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Số lượng Tồn Kho</td>
-                <td colspan="3">Active</td>
+                <th>STT</th>
+                <!-- <th>ih</th> -->
+                <th>Tên SP</th>
+                <th>Hình Ảnh</th>
+                <th>Mô Tả</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Số lượng Tồn Kho</th>
+                <th colspan="3">Active</th>
             </tr>
             <?php if (!empty($getList)): ?>
               <?php $stt = 1; foreach ($getList as $value) {?>

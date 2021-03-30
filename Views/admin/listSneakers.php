@@ -66,7 +66,7 @@
                             <td><?php echo $quanKho ?></td>
 					<td><a href="updateProduct.php?id=<?php echo $value['id'] ?>">Edit</a></td>
 					<td><a href="detailProduct.php?id=<?php echo $value['id'] ?>">Detail</a></td>
-					<td><a href="deleteProduct.php?id=<?php echo $value['id'] ?>">Del</a></td>
+                    <td><a onClick="deletePD(<?php echo $value['id'];?>)">Del</a></td>   
 				</tr>
 				<?php $stt++; } ?>
 			<?php endif ?>
@@ -79,4 +79,7 @@
     </form>
 </div>
 </div>
-<?php require_once 'footer.php';?>
+<?php
+    require_once 'confirmDel.php';
+    require_once 'footer.php';
+?>

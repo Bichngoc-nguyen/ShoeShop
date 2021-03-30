@@ -11,23 +11,23 @@
 
 .header_search-item {
     width: 25%;
-    height: 12vw;
+    height: 9.5vw;
     display: flex;
 }
 
 .header_search-logo {
-    width: 53%;
-    height: 12vw;
+    width: 40%;
+    height: 9vw;
     background-image: url(../../public/img/banner1.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: 50% 64%;
     padding: 0;
-    font-size: 40px;
+    font-size: 23px;
     box-shadow: 0px 0 100px 35px;
     color: #ffffff;
     font-family: 'FontAwesome';
-    padding-top: 3vw;
+    padding-top: 2.5vw;
     margin-top: 0.2vw;
 }
 
@@ -54,7 +54,7 @@ a.navbar-brand.header_search-logo:hover {
     width: 89%;
     float: right;
     margin-left: 2vw;
-    margin-top: 3%;
+    margin-top: 0%;
 }
 
 i.fa.fa-search {
@@ -375,6 +375,7 @@ a.productsNew-more {
     border: 1px solid #d0c9c9;
     color: #c5c1c1;
     font-size: 23px;
+    cursor: pointer;
 }
 
 .btnUp {

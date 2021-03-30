@@ -42,7 +42,7 @@ $numPage = $customer->getNumPageCus();
                     <td><?php echo $value['time'] ?></td>
                     <td><a href="updateCus.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                     <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>
-                    <td><a href="deleteCus.php?id=<?php echo $value['id'] ?>">Del</a></td>
+                    <td><a onClick="deletePD(<?php echo $value['id'];?>)">Del</a></td>                    
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>
@@ -55,4 +55,11 @@ $numPage = $customer->getNumPageCus();
     </form>
 </div>
 </div>
+<script language="javascript"> 
+    function deletePD(delId){ 
+        if (confirm("Are you sure you want to delete this record? ")==true){ 
+            window.location.href="deleteCus.php?id=" + delId; 
+        }
+    } 
+</script>
 <?php require_once 'footer.php';?>

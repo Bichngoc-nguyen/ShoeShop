@@ -12,9 +12,16 @@ $getBill = $products->getOrderBill();
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <input type="search" class="search p-2 mb-2" name="time" placeholder="Nhập tên SP, tên KH, trạng thái hoặc thời gian....">
+        <input type="date" class="search p-2 mb-2" name="time">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
+    <div>
+        <p>tổng danh thu theo ngày</p>
+        <p>tổng danh thu theo tháng</p>
+        <p>dang thu theo năm</p>
+    </div>
+
+    <!-- ko cần thiết -->
     <form action="" method="GET">
         <table class="list text-center" border="1">
             <tr>

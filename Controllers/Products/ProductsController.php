@@ -400,7 +400,6 @@ class ProductsController
 
     // end pagination
     // end shoe sandals
-
     /**
      * shoe Gots
      * */ 

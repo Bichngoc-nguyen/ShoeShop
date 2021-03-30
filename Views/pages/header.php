@@ -29,7 +29,7 @@
   <div class="container-fluid pl-0 pr-0">
     <!-- header -->
     <div class="header">
-      <div class="header_search  text-center row pl-0 pr-0 pb-2">
+      <div class="header_search  text-center row pl-0 pr-0">
         <div class="header_search-item col-xs-12 col-sm-3 col-lg-3 pl-0 pr-0">
           <a class="navbar-brand header_search-logo ml-5" href="../pages/index.php">
             <i>SHOE SHOP</i> 
@@ -42,14 +42,14 @@
                 <input type="text" class="form-control" name="name" placeholder="search..."> 
                 <p type="submit" class="ml-3 mb-0 search"><i class="fa fa-search"></i></p>
               </form> 
-              <div class="menu-list_cart ml-3 mt-5">
+              <div class="menu-list_cart ml-3 mt-4">
               <a href="cart.php" class="menu-list_cart-link"><i class="fa fa-shopping-basket"></i>
               <?php echo ('</br><i>'.$confirm->getTotal().'</i>');?></a>
               </div>
             </div>
             <div class="col-12">
-            <div class="header_menu mt-0">
-          <nav class="navbar navbar-expand-md container text-center ml-9">
+            <div class="header_menu">
+          <nav class="navbar navbar-expand-md container text-center ml-9 p-0">
         <div class="collapse header_menu-list" id="collapsibleNavbar">
           <div class="menu-list_item mt-2">
             <ul class="navbar-nav">

@@ -17,7 +17,7 @@
         <a href="createProduct.php" class="btn btn-warning">Add</a>
     </form>
     <form action="" method="POST">
-        <table class="list text-center" border="1">
+        <table class="list text-center table table-striped" border="1">
             <tr>
                 <th>STT</th>
                 <!-- <td>id</td> -->
@@ -63,10 +63,9 @@
 					<td><?php echo $value['price']; ?></td>
 					<td><?php echo $value['quantity']; ?></td>
 					<td><?php echo $quanSell?></td>
-                            <td><?php echo $quanKho ?></td>
-					<td><a href="updateProduct.php?id=<?php echo $value['id'] ?>">Edit</a></td>
-					<td><a href="detailProduct.php?id=<?php echo $value['id'] ?>">Detail</a></td>
-                    <td><a onClick="deletePD(<?php echo $value['id'];?>)">Del</a></td>   
+                    <td><?php echo $quanKho ?></td>
+                    <td><a class="action" href="updateProduct.php?id=<?php echo $value['id'] ?>"><i class="fa fa-pencil" title="chỉnh sửa"></i></a></td>
+                    <td><a class="action" onClick="deletePD(<?php echo $value['id'];?>)"><i class="fa fa-trash" title="xóa"></i></a></td>    
 				</tr>
 				<?php $stt++; } ?>
 			<?php endif ?>

@@ -39,5 +39,6 @@
         </p>
     </form>
 </div>
+    <?php require_once 'btnUp/Down.php';?>
 </div>
 <?php require_once 'footer.php';?>

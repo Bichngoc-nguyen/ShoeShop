@@ -22,5 +22,7 @@ $(document).ready(function () {
         $('.users-item').addClass('hiden').slideToggle();
     });
 
+    // knob
+    // $(".exm").knob();
     
 });

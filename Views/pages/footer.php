@@ -5,6 +5,7 @@
   Email: kinhdoanh@gaugaushop.com – Fax: 08.38666237 <br>
   ĐT: 0909052817 – 0963404074 – 0933463332</p>
 </footer>
+<div class="footer-copyright m-auto text-center p-2">COPYRIGHTS © 2019 BY MANZA.</div>
     </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>

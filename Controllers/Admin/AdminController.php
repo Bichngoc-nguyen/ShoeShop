@@ -57,6 +57,9 @@ class AdminController
                 throw new Exception("Đăng ki thất bại");
             }
         }
+        else{
+            header('location: register.php');
+        }
     }
 
     
@@ -222,6 +225,61 @@ class AdminController
         if ($delUser) {
             header("location: listUsers.php");
         }
+    }
+
+    // remember account
+    public function postEmail()
+    {
+        if (empty($this->request['email'])===false) {
+            $_SESSION['email'] = $this->request['email'];   
+            $users = new Users();
+            $postEmail = $users->postEmail($this->request['email']);
+            if ($postEmail) {
+                $value = [];
+                while ($rows = $postEmail->fetch_assoc()) {
+                    $value[] = $rows;
+                }
+                if (empty($value) === false) {
+                    header("location: UpdateAccount.php");
+                }else{
+                    echo "<script> alert('email bạn nhập không đúng') </script>";
+                }
+            }
+        }
+    }
+
+    // change password
+    public function postPassword()
+    {
+        if(isset($_SESSION['email'])){
+            $value = $_SESSION['email'];
+        }
+        $newPass = $this->request['newPass'];
+        $confirmPass = $this->request['confirmPass'];
+       if (((empty($value)) && (empty($newPass)) && (empty($confirmPass)))===false) {
+           if ((preg_match("/^[0-9A-Za-z]{8,15}$/",$newPass)) && 
+           (preg_match("/^[0-9A-Za-z]{8,15}$/",$confirmPass)) == true) {
+            if ($newPass == $confirmPass) {
+                $users = new Users();
+                $postPassword = $users->postPassword($value, $newPass, $confirmPass);
+                if ($postPassword) {
+                    header("location: login.php");
+                }
+            }else{
+                echo "<script> alert('Mật khẩu bạn nhập không trùng') </script>";
+            }
+           }else{
+              echo "<i class='error'>".$this->getError()."</i>";
+           }
+          
+       }
+    }
+
+    // error password
+    public function getError()
+    {
+        $error = "Mật khẩu bạn nhập ít nhất phải 8 kí tự";
+        return $error;
     }
     // end Users
 }

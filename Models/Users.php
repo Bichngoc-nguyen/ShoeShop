@@ -70,4 +70,19 @@ class Users extends Database
         $sql = "DELETE FROM staff WHERE id = $id";
         return $this->executeQuery($sql);
     }
+
+    // remember account
+    public function postEmail($email)
+    {
+        $sql = "SELECT * FROM staff WHERE email like '%".$email."%'";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
+    // change password
+    public function postPassword($email,$newPass, $conformPass)
+    {
+       $sql = "UPDATE staff SET password = '$newPass' WHERE email like '%".$email."%'";
+       return $this->executeQuery($sql);
+    }
 }

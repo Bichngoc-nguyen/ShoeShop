@@ -758,6 +758,35 @@ class ProductsController
         return $pagination;
     }
 
+    // select time 
+    public function selectTime()
+    {
+        $products = new  Products();
+        $select = $products->searchTime();
+        $value = [];
+        while ($rows = $select->fetch_assoc()) {
+           $value[] = $rows;
+        }
+        return $value;
+    }
+
+    // post select time
+    public function postSelectTime()
+    {
+        if (isset($this->request['time'])===false) {
+            $products = new  Products();
+            $select = $products->postSelectTime($this->request['time']);
+            $value = [];
+            while ($rows = $select->fetch_assoc()) {
+                $value[] = $rows;
+             }
+             return $value;
+        }
+        else{
+            echo 'dddddddđ';
+        }
+        
+    }
     // search bill
     public function searchBill()
     {
@@ -770,6 +799,8 @@ class ProductsController
             return $this->getOrderBill();
         }
         return $search;
+
+        
     }
 
     // get detail order bill    

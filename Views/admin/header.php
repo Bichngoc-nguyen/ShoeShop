@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- style -->
     <link rel="stylesheet" href="../../public/css/styleAdmin.css">
+    
 </head>
 <body>
     <div class="container-fluid pl-0 pr-0">
@@ -21,7 +22,7 @@
                 <h3><a href="../pages/index.php">Shoe Shop</a></h3>
             </div>
             <div class="col-6 text-right">
-                <a href="logout.php" title="Logout"><i class="fa fa-user logout"></i></a>
+                <a href="login.php" title="Logout" title="Logout"><i class="fa fa-user logout"></i></a>
             </div>
         </div>
         <div class="main">
@@ -42,7 +43,6 @@
                         </ul>
                     </li>
                     <li class="sidebar-selling-products"><a href="../admin/sellingProducts.php"><i class="fa fa-line-chart"></i> Selling Products</a></li>
-                    <li class="orders-products"><a href="../admin/ListOrders.php"><i class="fa fa-calculator"></i>  Orders</a></li>
                     <li class="customers-products"><a href="../admin/listCustomers.php"><i class="fa fa-users"></i> Customers</a></li>
                     <li><a href="listContact.php"><i class="fa fa-phone"></i> Contact Customers</a></li>
                     <li class="sidebar-users"><a href=""> <i class="fa fa-user-circle-o"></i> Users</a></li>  

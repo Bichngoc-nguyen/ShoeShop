@@ -1,4 +1,8 @@
 *{margin: 0;padding: 0;}
+a.action {
+    cursor: pointer;
+    color: red;
+}
 /* login */
 .login{
     background-color: aliceblue;
@@ -48,24 +52,6 @@
     opacity: 0;
     display: none;
 }
-/* 
-.sneakers-item {
-    opacity: 0;
-    display: none;
-}
-.sandals-item {
-    opacity: 0;
-    display: none;
-}
-.got-item{
-    opacity: 0;
-    display: none;
-}
-
-.bupbe-item {
-    opacity: 0;
-    display: none;
-} */
 
 .users-item {
     opacity: 0;
@@ -188,6 +174,28 @@ table.table img {
     margin: auto;
 }
 
+/* remember account */
+
+.remember-password {
+    width: 35%;
+    margin: auto;
+    border: 1px solid #e8dbdb;
+    border-radius: 11px;
+    background: whitesmoke;
+}
+
+.w3-input {
+    margin: 21px;
+    outline: none;
+}
+
+.content_update {
+    width: 50%;
+}
+
+i.error {
+    color: red;
+}
 /* category */
 .main-createCate.mt-5 {
     width: 50%;
@@ -208,4 +216,10 @@ th {
 
 table tr td {
     text-align: center;
+}
+
+/* FOOTER */
+.footer-copyright {
+    background: black;
+    color: white;
 }

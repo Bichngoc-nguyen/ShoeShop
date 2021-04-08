@@ -23,11 +23,12 @@
         <form action="" method="POST">
             <h3>LOGIN</h3>
             <label>Email :</label>
-            <input type="text"class="form-control" name="email" placeholder="Nhap email"> <br>
+            <input type="text"class="form-control" name="email" placeholder="Nhap email" required> <br>
             <label>Password :</label>
-            <input type="password" class="form-control" name="password" placeholder="Nhap password"><br>
+            <input type="password" class="form-control" name="password" placeholder="Nhap password" required><br>
+            <a href="rememberPass.php">Quên mật khẩu</a> <br><br>
             <input type="submit" class="btn btn-success" name="login" value="Login">
-            <button class="btn btn-warning"><a href="register.php">Register</a></button>
+            <a class="btn btn-warning" href="register.php">Register</a>
         </form>    
         </div>
     </div>

@@ -2,7 +2,6 @@
 require_once 'header.php';
 require_once '../../Controllers/Products/ProductsController.php';
 $product = new ProductsController();
-// $search = $product->searchContact();
 $numPrev = $product->getBtnPrevContact();
 $numNext = $product->getBtnNextContact();
 $numPage = $product->getNumPageContact();
@@ -36,7 +35,7 @@ $list = $product->getAllContacts();
                     <td><?php echo $value['phone']; ?></td>
                     <td><?php echo $value['note']; ?></td>
                     <td><?php echo $value['time']; ?></td>
-                    <td><a href="delContact.php?id=<?php echo $value['id'] ?>">Del</a></td>
+                    <td><a class="action" onClick="deleteCT(<?php echo $value['id'];?>)"><i class="fa fa-trash" title="xóa"></i></a></td>     
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>
@@ -49,4 +48,11 @@ $list = $product->getAllContacts();
     </form>
 </div>
 </div>
+<script language="javascript"> 
+    function deleteCT(delId){ 
+        if (confirm("Are you sure you want to delete this record? ")==true){ 
+            window.location.href="delContact.php?id=" + delId; 
+        }
+    } 
+</script>
 <?php require_once 'footer.php';?>

@@ -11,19 +11,14 @@ $getBill = $products->getOrderBill();
 ?>
 
 <div class="main-listSneakers mt-5">
+  <h2>CHI TIẾT SẢN PHẨM</h2>
     <form action="" method="POST">
-        <input type="date" class="search p-2 mb-2" name="time">
+        <input type="text" class="search p-2 mb-2" name="time" placeholder="Nhập tên sản phẩm hoặc thời gian...">
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
-    <div>
-        <p>tổng danh thu theo ngày</p>
-        <p>tổng danh thu theo tháng</p>
-        <p>dang thu theo năm</p>
-    </div>
-
     <!-- ko cần thiết -->
     <form action="" method="GET">
-        <table class="list text-center" border="1">
+        <table class="list text-center table table-striped" border="1">
             <tr>
                 <th>STT</th>
                 <th>Tên Sản Phẩm</th>
@@ -44,8 +39,8 @@ $getBill = $products->getOrderBill();
                     <td><?php echo $value['quantity']; ?></td>
                     <td><?php echo $quantity * $price.".000đ"; ?></td>
                     <td><?php echo $value['time'] ?></td>
-                    <td><a href="updateBill.php?id=<?php echo $value['id'] ?>">Edit</a></td>
-                    <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>
+                    <td><a class="action" href="detailBill.php?id=<?php echo $value['customer_id'] ?>"><i class="fa fa-info" title="chi tiết"></i></a></td>
+                    <td><a class="action" onClick="deletePD(<?php echo $value['id'];?>)"><i class="fa fa-trash" title="xóa"></i></a></td> 
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>

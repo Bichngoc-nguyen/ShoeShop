@@ -1,7 +1,7 @@
 *{margin: 0; padding: 0px;}
 /* logo */
 .header{
-    background-color: #ffa824!important;
+    background-color: #ecc2e3!important;
 }
 
 .header_search{
@@ -74,7 +74,7 @@ i.fa.fa-search {
 .menu-list_item_link {
     color: #131212 !important;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 1.5vw;
     font-family: ui-monospace;
 }
 
@@ -97,7 +97,7 @@ i.fa.fa-bars {
 /* menu-cart */
 a.menu-list_cart-link {
     color: #060606;
-    font-size: 20px;
+    font-size: 1.5vw;
 }
 
 /* menu item */
@@ -272,7 +272,7 @@ td.total {
 }
 
 .content-title h1 {
-    font-size: 31px;
+    font-size: 2vw;
 }
 /* shop hoa active */
 .content_active {
@@ -335,6 +335,7 @@ a.productsNew-more {
 }
 
 .news-banner_text{
+    padding-top: 9vw;
     height: 65%;
     color: white;
     margin: auto;
@@ -388,4 +389,36 @@ a.productsNew-more {
 
 .show{
     display: block;
+}
+
+/* news pages */
+
+.blog_sibar {
+    text-align: center;
+    border: 1px solid white;
+    box-shadow: 1px 10px 10px 10px whitesmoke;
+}
+
+.sibar-img img {
+    width: 100%;
+}
+
+.sibar-title h3 {
+    background: black;
+    color: white;
+}
+
+.blog_col1-img img {
+    width: 100%;
+} 
+
+.blog_col1-img:hover {
+    transform: rotateZ(10deg);
+    transition: 0.4s;
+    margin-bottom: 40px;
+}
+
+.footer-copyright {
+    background: black;
+    color: white;
 }

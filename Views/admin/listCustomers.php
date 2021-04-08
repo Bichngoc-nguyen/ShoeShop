@@ -7,7 +7,6 @@ $search = $customer->searchCus();
 $numPrev = $customer->getBtnPrevCus();
 $numNext = $customer->getBtnNextCus();
 $numPage = $customer->getNumPageCus();
-// $getCus = $customer->getCustomers();
 
 ?>
 
@@ -17,7 +16,7 @@ $numPage = $customer->getNumPageCus();
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">
-        <table class="list text-center" border="1">
+        <table class="list text-center table table-striped" border="1">
             <tr>
                 <th>STT</th>
                 <th>Tên Khách Hàng</th>
@@ -40,9 +39,9 @@ $numPage = $customer->getNumPageCus();
                     <td><?php echo $value['note']?></td>
                     <td><?php echo $value['status'] ?></td>
                     <td><?php echo $value['time'] ?></td>
-                    <td><a href="updateCus.php?id=<?php echo $value['id'] ?>">Edit</a></td>
-                    <td><a href="detailBill.php?id=<?php echo $value['customer_id'] ?>">Detail</a></td>
-                    <td><a onClick="deletePD(<?php echo $value['id'];?>)">Del</a></td>                    
+                    <td><a class="action" href="updateCus.php?id=<?php echo $value['id'] ?>"><i class="fa fa-pencil" title="chỉnh sửa"></i></a></td>
+                    <td><a class="action" href="detailBill.php?id=<?php echo $value['customer_id'] ?>"><i class="fa fa-info" title="chi tiết"></i></a></td>
+                    <td><a class="action" onClick="deletePD(<?php echo $value['id'];?>)"><i class="fa fa-trash" title="xóa"></i></a></td>                    
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>

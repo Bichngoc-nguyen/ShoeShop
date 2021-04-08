@@ -13,23 +13,23 @@ $getSelling = $products->getSellingProducts();
 
 <div class="main-listSneakers mt-5">
     <form action="" method="POST">
-        <input type="search" class="search p-2 mb-2" name="name" placeholder="Search....">
+        Tìm Kiếm: <input type="search" class="search p-2 mb-2" name="name" placeholder="Nhập tên sản phẩm....">
         <input type="submit" class="btn btn-success" name="search" value="Search">
         <a href="createProduct.php" class="btn btn-warning">Add</a>
     </form>
     <form action="" method="POST">
-        <table class="list text-center" border="1">
+        <table class="list text-center table table-striped" border="1">
             <tr>
-                <td>STT</td>
-                <!-- <td>id</td> -->
-                <td>Tên SP</td>
-                <td>Hình Ảnh</td>
-                <td>Mô Tả</td>
-                <td>Giá</td>
-                <td>Số Lượng</td>
-                <td>Số Lượng Đã Bán</td>
-                <td>Số lượng Tồn Kho</td>
-                <td colspan="3">Active</td>
+                <th>STT</th>
+                <!-- <th>ih</th> -->
+                <th>Tên SP</th>
+                <th>Hình Ảnh</th>
+                <th>Mô Tả</th>
+                <th>Giá</th>
+                <th>Số Lượng</th>
+                <th>Số Lượng Đã Bán</th>
+                <th>Số lượng Tồn Kho</th>
+                <th colspan="2">Active</th>
             </tr>
             <?php if (!empty($search)): ?>
               <?php $stt = 1; foreach ($search as $value) {?>
@@ -64,9 +64,8 @@ $getSelling = $products->getSellingProducts();
                         <td><?php echo $value['quantity']; ?></td>
                         <td><?php echo $quanSell;?></td>
                         <td><?php echo $quanKho; ?></td>
-                        <td><a href="updateProduct.php?id=<?php echo $value['id'] ?>">Edit</a></td>
-                        <td><a href="detailProduct.php?id=<?php echo $value['id'] ?>">Detail</a></td>
-                        <td><a onClick="deletePD(<?php echo $value['id'];?>)">Del</a></td>   
+                        <td><a class="action" href="updateProduct.php?id=<?php echo $value['id'] ?>"><i class="fa fa-pencil" title="chỉnh sửa"></i></a></td>
+                        <td><a class="action" onClick="deletePD(<?php echo $value['id'];?>)"><i class="fa fa-trash" title="xóa"></i></a></td> 
                     </tr>
                     <?php $stt++; } ?>
                 <?php endif ?>

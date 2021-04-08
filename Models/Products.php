@@ -297,6 +297,26 @@ class Products extends Database
         return $result;
     }
 
+    // search bill
+    public function postSelectTime($time)
+    {
+        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum, c.time, c.status
+        FROM (orders o join customer c ON o.customer_id = c.id) WHERE (time = '$time')";
+        var_dump($sql);
+        die;
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
+     // search bill
+    public function searchTime()
+    {
+        $sql = "SELECT  c.username, o.id, o.customer_id, o.nameProduct, o.quantity, o.price, o.sum, c.time, c.status
+        FROM (orders o join customer c ON o.customer_id = c.id) group by c.time";
+        $result = $this->executeQuery($sql);
+        return $result;
+    }
+
     // update orders bill
     public function updateBill($id, $name, $quantity, $price, $status)
     {

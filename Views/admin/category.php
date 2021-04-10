@@ -36,7 +36,7 @@ if (isset($_POST['add'])) {
                             <td><?php echo $stt?></td>
                             <td><?php echo $value['nameCategories']?></td>
                             <td><a href="updateCate.php?id=<?php echo $value['id']?>" class="btn btn-warning">Edit</a></td>
-                            <td><a href="delCate.php?id=<?php echo $value['id']?>" class="btn btn-danger">Del</a></td>
+                            <td><a onclick="deleteCate(<?php echo $value['id']?>)" class="btn btn-danger">Del</a></td>
                         </tr>
                     <?php $stt++; }?>
                 <?php endif;?>
@@ -46,5 +46,13 @@ if (isset($_POST['add'])) {
     </div>
 </div>
 </div>
+
+<script>
+    function deleteCate(delId) { 
+        if(confirm("Are you sure you want to delete this record?")=== true){
+            window.location.href="deleteCate.php?id=" + delId;
+        }
+     }
+</script>
 <?php
 require_once 'footer.php';

@@ -22,6 +22,27 @@ class Products extends Database
         return $this->executeQuery($sql);
     }
 
+    // get cate with id
+    public function getCategoriesId($id)
+    {
+        $sql = "SELECT * FROM categories where id = $id";
+        return $this->executeQuery($sql);
+    }
+
+    // update Category
+    public function updateCate($id, $name)
+    {
+       $sql = "UPDATE categories set nameCategories = '$name' where id = $id";
+       return $this->executeQuery($sql);
+    }
+
+    // delete Category
+    public function deleteCate($id)
+    {
+        $sql = "DELETE from categories where id = $id";
+        return $this->executeQuery($sql);
+    }
+
     // create products
     public function createProducts($name, $photo, $price, $quantity, $descript, $cate)
     {
@@ -183,7 +204,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
-        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' GROUP BY p.id";
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Wood' GROUP BY p.id";
         $result = $this->executeQuery($sql);
         $totalRows = $result->num_rows;
         $totalPages = ceil($totalRows/$item_per_page);
@@ -194,7 +215,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
-        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Wood' GROUP BY p.nameProduct limit ".$item_per_page." OFFSET ".$offset;
         return $this->executeQuery($sql);
     }
     // end shoe Gots
@@ -231,7 +252,7 @@ class Products extends Database
     {
         $sql = "SELECT p.id, p.nameProduct, pd.image,p.photo,p.price, p.quantity,ct.nameCategories 
         FROM (( product p INNER join productDetail pd ON p.id = pd.product_id ) 
-        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'wood' AND p.nameProduct LIKE '%".$name."%'";
+        INNER join categories ct ON p.category_id = ct.id ) WHERE ct.nameCategories = 'Wood' AND p.nameProduct LIKE '%".$name."%'";
         return $this->executeQuery($sql);
     }
 
@@ -351,6 +372,14 @@ class Products extends Database
     {
        $sql = "SELECT * FROM contact limit ".$item_per_page." OFFSET ".$offset;
        return $this->executeQuery($sql);
+    }
+
+    // search contact
+    public function searchContact($name)
+    {
+     $sql = "SELECT * from contact where username LIKE '%$name%'";
+     $result = $this->executeQuery($sql);
+    return $result;
     }
 
     // get total num pages contact

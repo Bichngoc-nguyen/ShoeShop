@@ -21,7 +21,7 @@
           }
         ?>
         <form action="" method="POST">
-            <h3>LOGIN</h3>
+            <h3 class="text-center">LOGIN</h3>
             <label>Email :</label>
             <input type="text"class="form-control" name="email" placeholder="Nhap email" required> <br>
             <label>Password :</label>

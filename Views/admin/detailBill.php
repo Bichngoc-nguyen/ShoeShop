@@ -10,6 +10,7 @@ if (isset($_GET['id'])) {
 ?>
 
 <div class="main-listSneakers detail_bill mt-5">
+    <h3 class="text-center">Thông Tin Đơn Hàng</h3>
     <form action="" method="GET">
         <div class="row ml-0 mr-0 mt-5">
             <div class="col-6">

@@ -15,7 +15,7 @@ if (isset($_POST['add'])) {
 
 <div class="main-upadateSneakers mt-5">
   <form action="" method="post" enctype="multipart/form-data">
-    <h3>Update Giày Product Orders </h3>
+    <h3>Update Thông Tin Khách Hàng </h3>
     <table>
       <?php if (empty($getId)=== false):  ?>
         <?php foreach ($getId as $value) :?>

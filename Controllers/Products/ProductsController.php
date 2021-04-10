@@ -833,6 +833,24 @@ class ProductsController
         return $value;
     }
 
+    // get search contact
+    public function searchContact()
+    {
+       if (empty($this->request['name'])===false) {
+           $products = new Products();
+           $search = $products->searchContact($this->request['name']);
+           $value=[];
+           while ($row = $search->fetch_assoc()) {
+               $value[] = $row;
+           }if (empty($value)) {
+                $value=[];
+            }
+           return $value;
+       }else{
+        return $this->getAllContacts();
+       }
+    }
+
     // get total number pages 
     public function getNumPageContact()
     {

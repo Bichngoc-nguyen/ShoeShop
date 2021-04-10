@@ -36,7 +36,7 @@ $getUsers = $admin->getAllListUsers();
                     <td><img src="../../public/upload/<?php echo $value['avatar']?>"></td>
                     <td><a href="updateUser.php?id=<?php echo $value['id'] ?>">Edit</a></td>
                     <td><a href="detailUser.php?id=<?php echo $value['id'] ?>">Detail</a></td>
-                    <td><a href="delUser.php?id=<?php echo $value['id'] ?>">Del</a></td>
+                    <td><a class="action" onClick="deleteUser(<?php echo $value['id'];?>)">Del</a></td>
                 </tr>
                 <?php $stt++; } ?>
             <?php endif ?>
@@ -49,4 +49,11 @@ $getUsers = $admin->getAllListUsers();
     </form>
 </div>
 </div>
+<script>
+    function  deleteUser(delID) { 
+        if (confirm("Are you sure you want to delete this record? ")==true){ 
+            window.location.href="delUser.php?id=" + delId; 
+        }
+     }
+</script>
 <?php require_once 'footer.php';?>

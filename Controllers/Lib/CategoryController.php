@@ -51,5 +51,38 @@ class CategoryController
         }
         return $value;
     }
+
+    // get category with id 
+    public function getCategoriesId($id)
+    {
+       $cate = new Products();
+       $getCateId = $cate->getCategoriesId($id);
+        while ($rows = $getCateId->fetch_assoc()) {
+            $value[] = $rows;
+        }
+        return $value;
+    }
+
+    // updatecategory
+    public function updateCate()
+    {
+       if (empty($this->request['name'])===false) {
+           $cate = new Products();
+           $postCate = $cate->updateCate($this->request['id'], $this->request['name']);
+           if ($postCate) {
+               header("location: category.php");
+           }
+       }
+    }
+
+    // delete cate
+    public function deleteCate($id)
+    {
+        $cate = new Products();
+        $postCate = $cate->deleteCate($id);
+        if ($postCate) {
+            header("location: category.php");
+        }
+    }
 }
 

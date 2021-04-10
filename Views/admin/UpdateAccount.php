@@ -26,12 +26,9 @@
                     ob_start();
                         session_start();
                         require_once '../../Controllers/Admin/AdminController.php';
-                        require_once '../../Controllers/Lib/ValidatorController.php';
                         $admin = new AdminController();
-                        $validate = new ValidatorController();
                         $postEmail = $admin->postEmail();
                         if (isset($_POST['changePass'])) {
-                            $is_newPass = $validate->is_newPass();
                             $postPassword = $admin->postPassword();
                         }
                 ?><br><br>

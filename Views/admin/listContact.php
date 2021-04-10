@@ -2,6 +2,7 @@
 require_once 'header.php';
 require_once '../../Controllers/Products/ProductsController.php';
 $product = new ProductsController();
+$search = $product->searchContact();
 $numPrev = $product->getBtnPrevContact();
 $numNext = $product->getBtnNextContact();
 $numPage = $product->getNumPageContact();
@@ -26,8 +27,8 @@ $list = $product->getAllContacts();
                 <th>Thời Gian</th>
                 <th colspan="3">Active</th>
             </tr>
-            <?php if (!empty($list)): ?>
-              <?php $stt = 1; foreach ($list as $value) {?>
+            <?php if (!empty($search)): ?>
+              <?php $stt = 1; foreach ($search as $value) {?>
                  <tr>
                     <td class="color"><?php echo $stt; ?></td>
                     <td><?php echo $value['username']; ?></td>

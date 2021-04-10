@@ -16,7 +16,7 @@ $getBill = $products->getOrderSell();
         <input type="submit" class="btn btn-success" name="search" value="Search">
     </form>
     <form action="" method="GET">
-        <table class="list text-center" border="1">
+        <table class="list text-center  table table-striped" border="1">
             <tr>
                 <th>STT</th>
                 <th>Tên Sản Phẩm</th>

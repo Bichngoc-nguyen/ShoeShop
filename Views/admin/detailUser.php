@@ -49,11 +49,20 @@ if (isset($_GET['id'])) {
                 </tr>
                     <?php }?>
             <?php endif?>
+                <td>
+                    <a href="updateUser.php?id=<?php echo $value['id'] ?>" class="btn btn-warning">Edit</a>
+                    <a class="btn btn-danger" onClick="deleteUser(<?php echo $value['id'];?>)">Del</a>
+                </td>
             </table>
-                <a href="updateUser.php?id=<?php echo $value['id'] ?>" class="btn btn-warning">Edit</a>
-                <a href="delUser.php?id=<?php echo $value['id'] ?>"  class="btn btn-danger">Del</a>
         </form>
     </div>
 </div>
 </div>
+<script>
+    function  deleteUser(delID) { 
+        if (confirm("Are you sure you want to delete this record? ")==true){ 
+            window.location.href="delUser.php?id=" + delId; 
+        }
+     }
+</script>
 <?php require_once 'footer.php';?>
